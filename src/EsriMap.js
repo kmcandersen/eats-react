@@ -2,6 +2,7 @@ import React, { Component, createRef } from 'react';
 import { loadMap } from './utils/map';
 import { loadHome, loadLocate } from './utils/widgets';
 import { loadLinesLayer, loadStationsLayer } from './utils/layer';
+// import { setGraphics } from "./utils/graphics";
 import './EsriMap.css';
 
 class EsriMap extends Component {
@@ -24,6 +25,7 @@ class EsriMap extends Component {
         this._view = view;
         loadHome(view);
         loadLocate(view);
+        //this.props.setSampleArtwork(sampleArtwork);
         const stationsLayer = loadStationsLayer();
         this._view.map.add(stationsLayer);
       })
@@ -49,7 +51,9 @@ class EsriMap extends Component {
     const { mapHeight } = this.state;
     return (
       <div className="Map--wrapper" style={{ height: mapHeight, width: '65%' }}>
-        <div className="Map--map" ref={this.mapDiv}></div>
+        <div className="Map--map" ref={this.mapDiv}>
+          {/* <div className={`${!this.props.mapLoaded && "loading-spinner"}`}></div> */}
+        </div>
       </div>
     );
   }

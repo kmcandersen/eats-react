@@ -1,4 +1,5 @@
 import { loadModules } from 'esri-loader';
+import icon from '../img/map-pin-filled.svg';
 
 export const loadLinesLayer = () => {
   return loadModules(['esri/layers/FeatureLayer']).then(([FeatureLayer]) => {
@@ -25,3 +26,86 @@ export const loadStationsLayer = () => {
     return layer;
   });
 };
+
+export function loadDataLayer(graphicsArr) {
+  return loadModules(['esri/layers/FeatureLayer']).then(([FeatureLayer]) => {
+    const layer = new FeatureLayer({
+      title: 'Restaurants',
+      copyright: 'Yelp Inc.',
+      outFields: [
+        'ObjectID',
+        'latitude',
+        'longitude',
+        'distance',
+        'id',
+        'image_url',
+        'address',
+        'city',
+        'name',
+        'rating',
+        'url',
+      ],
+      fields: [
+        {
+          name: 'ObjectID',
+          type: 'oid',
+        },
+        {
+          name: 'latitude',
+          type: 'double',
+        },
+        {
+          name: 'longitude',
+          type: 'double',
+        },
+        {
+          name: 'distance',
+          type: 'string',
+        },
+        {
+          name: 'id',
+          type: 'string',
+        },
+        {
+          name: 'image_url',
+          type: 'string',
+        },
+        {
+          name: 'address',
+          type: 'string',
+        },
+        {
+          name: 'city',
+          type: 'string',
+        },
+        {
+          name: 'name',
+          type: 'string',
+        },
+        {
+          name: 'rating',
+          type: 'double',
+        },
+        {
+          name: 'url',
+          type: 'string',
+        },
+      ],
+
+      objectIdField: 'ObjectID',
+      geometryType: 'point',
+      spatialReference: { wkid: 4326 },
+      source: graphicsArr || [], // empty arr at first
+      renderer: {
+        type: 'simple', // autocasts as new SimpleRenderer()
+        symbol: {
+          type: 'picture-marker', // autocasts as new PictureMarkerSymbol()
+          url: icon,
+          width: '30px',
+          height: '30px',
+        },
+      },
+    });
+    return layer;
+  });
+}

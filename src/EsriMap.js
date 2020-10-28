@@ -1,9 +1,15 @@
 import React, { Component, createRef } from 'react';
 import { loadMap } from './utils/map';
 import { loadHome, loadLocate } from './utils/widgets';
-import { loadLinesLayer, loadStationsLayer } from './utils/layer';
-// import { setGraphics } from "./utils/graphics";
+import {
+  loadLinesLayer,
+  loadStationsLayer,
+  loadDataLayer,
+} from './utils/layer';
+import { setGraphics } from './utils/graphics';
 import './EsriMap.css';
+
+//let mapClickListener;
 
 class EsriMap extends Component {
   constructor(props) {
@@ -23,16 +29,43 @@ class EsriMap extends Component {
     loadMap(container)
       .then(view => {
         this._view = view;
-        loadHome(view);
-        loadLocate(view);
+        loadHome(this._view);
+        loadLocate(this._view);
         //this.props.setSampleArtwork(sampleArtwork);
-        const stationsLayer = loadStationsLayer();
-        this._view.map.add(stationsLayer);
+        //const stationsLayer = loadStationsLayer();
+        this._view.map.add(loadStationsLayer());
       })
       .then(() => {
-        const linesLayer = loadLinesLayer();
-        this._view.map.add(linesLayer);
+        this._view.map.add(loadLinesLayer());
       });
+    //.then(() => console.log(this._view.map.layers.items), 1000);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.data !== prevProps.data) {
+      //delay nec to capture view
+      setTimeout(() => {
+        if (this._view) {
+          let layer = '';
+          layer = this._view.map.layers.getItemAt(2);
+          if (layer) {
+            this._view.map.remove(layer);
+          }
+
+          setGraphics(this.props.searchResults)
+            .then(graphicsArr => {
+              return (layer = loadDataLayer(graphicsArr));
+            })
+            .then(layer => {
+              this._view.map.add(layer);
+            })
+            .then(() =>
+              this._view.goTo({ center: this.props.selectedSta.coords })
+            );
+        }
+        //end setTimeout
+      }, 200);
+    }
   }
 
   calcMapSize = () => {
@@ -47,6 +80,7 @@ class EsriMap extends Component {
       delete this._view;
     }
   }
+
   render() {
     const { mapHeight } = this.state;
     return (

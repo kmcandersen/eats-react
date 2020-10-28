@@ -7,7 +7,7 @@ export function loadMap(container) {
     { css: 'https://js.arcgis.com/4.16/esri/themes/light/main.css' }
   ).then(([Map, MapView]) => {
     const map = new Map({
-      basemap: 'gray-vector',
+      basemap: 'gray',
     });
     const view = new MapView({
       map: map,

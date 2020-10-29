@@ -1,5 +1,6 @@
 import { loadModules } from 'esri-loader';
-import icon from '../img/map-pin-filled.svg';
+import grayIcon from '../img/map-pin-gray.svg';
+import yellowIcon from '../img/map-pin-yellow.svg';
 
 export const loadLinesLayer = () => {
   return loadModules(['esri/layers/FeatureLayer']).then(([FeatureLayer]) => {
@@ -27,7 +28,9 @@ export const loadStationsLayer = () => {
   });
 };
 
-export function loadDataLayer(graphicsArr) {
+// searchResults arr OR selectedRest (yellow icon) -- an array of one
+export function loadDataLayer(graphicsArr, color = 'gray') {
+  let iconByColor = color === 'yellow' ? yellowIcon : grayIcon;
   return loadModules(['esri/layers/FeatureLayer']).then(([FeatureLayer]) => {
     const layer = new FeatureLayer({
       title: 'Restaurants',
@@ -100,7 +103,7 @@ export function loadDataLayer(graphicsArr) {
         type: 'simple', // autocasts as new SimpleRenderer()
         symbol: {
           type: 'picture-marker', // autocasts as new PictureMarkerSymbol()
-          url: icon,
+          url: iconByColor,
           width: '30px',
           height: '30px',
         },

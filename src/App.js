@@ -15,22 +15,46 @@ class App extends Component {
       coords: [],
       lines: [],
     },
+    selectedRest: [],
     searchResults: [],
+    bookmarks: [],
+    // searchResults or bookmarks
     data: '',
     onMapLoad: false,
   };
 
   async componentDidMount() {
     try {
-      const url =
-        'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=41.867405&longitude=-87.62659&radius=804&limit=10';
+      // const url =
+      //   'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=41.867405&longitude=-87.62659&radius=804&limit=10';
+      const url = `https://cors-anywhere.herokuapp.com/http://gafinal.herokuapp.com/?term=restaurant&latitude=41.867405&longitude=-87.62659&radius=804&limit=10`;
 
       const selectedStaInfo = {
-        id: 0,
+        // id: 760,
+        // name: 'Granville',
+        // address: '1119 W. Granville Ave.',
+        // coords: [-87.659202, 41.993664],
+        // lines: ['red'],
+        id: 410,
         name: 'Roosevelt/Wabash',
         address: '22 E. Roosevelt Road',
         coords: [-87.62659, 41.867405],
         lines: ['red', 'green', 'orange'],
+      };
+
+      //sample--delete
+      const selectedRestInfo = {
+        latitude: 41.8653913003346,
+        longitude: -87.6260132093555,
+        id: '3BKnY2wzy4QM20Fr1nqDsg',
+        image_url:
+          'https://s3-media3.fl.yelpcdn.com/bphoto/CCbcgS9VzaJYRXiPAsYglg/o.jpg',
+        address: '1310 S Wabash Ave',
+        city: 'Chicago',
+        name: 'Flo & Santos',
+        rating: 4,
+        url:
+          'https://www.yelp.com/biz/flo-and-santos-chicago-3?adjust_creative=yBSQxTfRYukNfg2kMSU4Sw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=yBSQxTfRYukNfg2kMSU4Sw',
       };
 
       await axios
@@ -44,6 +68,7 @@ class App extends Component {
           let searchData = createFeatureArr(res.data.businesses);
           this.setState({
             selectedSta: selectedStaInfo,
+            selectedRest: [selectedRestInfo],
             searchResults: searchData,
             data: 'searchResults',
           });
@@ -54,18 +79,13 @@ class App extends Component {
   }
 
   render() {
-    const { selectedSta, data, searchResults, onMapLoad } = this.state;
+    // const { selectedSta, selectedRest, data, searchResults, onMapLoad } = this.state;
     return (
       <div>
         <Header />
         <main className="Main--wrapper">
           <Panel />
-          <EsriMap
-            selectedSta={selectedSta}
-            data={data}
-            searchResults={searchResults}
-            onMapLoad={onMapLoad}
-          />
+          <EsriMap {...this.state} />
         </main>
       </div>
     );

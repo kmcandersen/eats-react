@@ -36,6 +36,7 @@ export function loadMap(container) {
       highlightOptions: {
         fillOpacity: 1,
         color: 'yellow',
+        haloColor: 'black',
       },
     });
     return view;

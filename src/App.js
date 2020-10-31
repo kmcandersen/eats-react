@@ -16,7 +16,6 @@ class App extends Component {
       lines: [],
     },
     selectedRest: [],
-    origResults: [],
     searchResults: [],
     bookmarks: [],
     // searchResults or bookmarks
@@ -66,10 +65,6 @@ class App extends Component {
         },
       })
       .then(res => {
-        // this.setState({ origResults: res.data.businesses });
-        // if (this.state.origResults && this.state.origResults[0].categories) {
-        //   let searchResults = createFeatureArr(this.state.origResults);
-
         if (res.data.businesses && res.data.businesses[0].categories) {
           let searchResults = createFeatureArr(res.data.businesses);
 
@@ -94,7 +89,6 @@ class App extends Component {
         <main className="Main--wrapper">
           <Panel
             selectedSta={this.state.selectedSta}
-            // origResults={this.state.origResults}
             items={
               this.state.data === 'searchResults' && this.state.searchResults
             }

@@ -1,5 +1,5 @@
 import { loadModules } from 'esri-loader';
-import grayIcon from '../img/map-pin-gray.svg';
+import blueIcon from '../img/map-pin-blue.svg';
 import orangeIcon from '../img/map-pin-orange.svg';
 
 export const loadLinesLayer = () => {
@@ -29,8 +29,8 @@ export const loadStationsLayer = () => {
 };
 
 // searchResults arr OR selectedRest (yellow icon) -- an array of one
-export function loadDataLayer(graphicsArr, color = 'gray') {
-  let iconByColor = color === 'orange' ? orangeIcon : grayIcon;
+export function loadDataLayer(graphicsArr, color = 'blue') {
+  let iconByColor = color === 'orange' ? orangeIcon : blueIcon;
   return loadModules(['esri/layers/FeatureLayer']).then(([FeatureLayer]) => {
     const layer = new FeatureLayer({
       title: 'Restaurants',

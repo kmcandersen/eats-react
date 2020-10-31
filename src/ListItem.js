@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './ListItem.css';
 
 class ListItem extends Component {
   render() {
@@ -31,7 +32,7 @@ class ListItem extends Component {
             </h5>
             <p className="font-size--1 trailer-half">{fullAddress}</p>
 
-            <p className="font-size--1 trailer-half">{categories}</p>
+            <p className="font-size--1 trailer-half text-light">{categories}</p>
 
             <div className="ListItem--bottom-row">
               <div>

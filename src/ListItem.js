@@ -10,10 +10,14 @@ class ListItem extends Component {
       city,
       category1,
       category2,
+      distanceStr,
     } = this.props.item;
 
     //if there's a 2nd category, append it to the 1st category
     let categories = category2 ? `${category1}, ${category2}` : `${category1}`;
+
+    //if city isn't Chicago, display city
+    let fullAddress = city !== 'Chicago' ? `${address}, ${city}` : `${address}`;
 
     return (
       <div className="ListItem--wrapper">
@@ -25,10 +29,7 @@ class ListItem extends Component {
             <h5 className="trailer-half">
               <a href={url}>{name}</a>
             </h5>
-            <p className="font-size--1 trailer-half">
-              {address}
-              {city !== 'Chicago' && `, ${city}`}
-            </p>
+            <p className="font-size--1 trailer-half">{fullAddress}</p>
 
             <p className="font-size--1 trailer-half">{categories}</p>
 
@@ -39,6 +40,9 @@ class ListItem extends Component {
                 <span className="icon-ui-favorites icon-ui-yellow icon-ui-flush"></span>
                 <span className="icon-ui-favorites icon-ui-gray icon-ui-flush"></span>
                 <span className="icon-ui-favorites icon-ui-gray icon-ui-flush"></span>
+              </div>
+              <div>
+                <p className="font-size--1 trailer-half">{distanceStr}</p>
               </div>
             </div>
           </div>

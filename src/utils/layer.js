@@ -37,11 +37,12 @@ export function loadDataLayer(graphicsArr, color = 'blue') {
       copyright: 'Yelp Inc.',
       outFields: [
         'ObjectID',
-        // 'category1',
-        // 'category2',
+        'category1',
+        'category2',
         'latitude',
         'longitude',
         'distance',
+        'distanceStr',
         'id',
         'image_url',
         'address',
@@ -73,6 +74,10 @@ export function loadDataLayer(graphicsArr, color = 'blue') {
         },
         {
           name: 'distance',
+          type: 'double',
+        },
+        {
+          name: 'distanceStr',
           type: 'string',
         },
         {

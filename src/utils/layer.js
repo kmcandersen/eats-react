@@ -1,6 +1,6 @@
 import { loadModules } from 'esri-loader';
 import grayIcon from '../img/map-pin-gray.svg';
-import yellowIcon from '../img/map-pin-yellow.svg';
+import orangeIcon from '../img/map-pin-orange.svg';
 
 export const loadLinesLayer = () => {
   return loadModules(['esri/layers/FeatureLayer']).then(([FeatureLayer]) => {
@@ -30,13 +30,15 @@ export const loadStationsLayer = () => {
 
 // searchResults arr OR selectedRest (yellow icon) -- an array of one
 export function loadDataLayer(graphicsArr, color = 'gray') {
-  let iconByColor = color === 'yellow' ? yellowIcon : grayIcon;
+  let iconByColor = color === 'orange' ? orangeIcon : grayIcon;
   return loadModules(['esri/layers/FeatureLayer']).then(([FeatureLayer]) => {
     const layer = new FeatureLayer({
       title: 'Restaurants',
       copyright: 'Yelp Inc.',
       outFields: [
         'ObjectID',
+        // 'category1',
+        // 'category2',
         'latitude',
         'longitude',
         'distance',
@@ -52,6 +54,14 @@ export function loadDataLayer(graphicsArr, color = 'gray') {
         {
           name: 'ObjectID',
           type: 'oid',
+        },
+        {
+          name: 'category1',
+          type: 'string',
+        },
+        {
+          name: 'category2',
+          type: 'string',
         },
         {
           name: 'latitude',

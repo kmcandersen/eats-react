@@ -80,7 +80,7 @@ class EsriMap extends Component {
           }
           setGraphics(this.props.selectedRest)
             .then(graphicsArr => {
-              let selectedRestLayer = loadDataLayer(graphicsArr, 'yellow');
+              let selectedRestLayer = loadDataLayer(graphicsArr, 'orange');
               return selectedRestLayer;
             })
             .then(selectedRestLayer => {

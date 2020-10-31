@@ -26,14 +26,15 @@ export const createFeatureArr = arr => {
 
   for (let i = 0; i < arr.length; i++) {
     let el = arr[i];
-
     idCount++;
 
     let feature = {
       ObjectID: 0,
+      category1: '',
+      category2: '',
       latitude: 0,
       longitude: 0,
-      distance: '',
+      distance: 0,
       id: '',
       image_url: 0,
       address: '',
@@ -44,6 +45,10 @@ export const createFeatureArr = arr => {
     };
 
     feature.ObjectID = idCount;
+    feature.category1 = el.categories[0].title || '';
+    if (el.categories[1]) {
+      feature.category2 = el.categories[1].title || '';
+    }
     feature.latitude = el.coordinates.latitude;
     feature.longitude = el.coordinates.longitude;
     feature.distance = roundToEighthsMi(el.distance);

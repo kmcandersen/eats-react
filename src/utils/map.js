@@ -35,7 +35,7 @@ export function loadMap(container) {
       },
       highlightOptions: {
         fillOpacity: 1,
-        color: 'yellow',
+        color: [255, 204, 0, 1],
         haloColor: 'black',
       },
     });

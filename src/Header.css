@@ -12,7 +12,6 @@ header {
   height: 100%;
   display: flex;
   align-items: center;
-  /* display: inline-block; */
 }
 
 .Header--tagline {
@@ -20,5 +19,4 @@ header {
   height: 100%;
   display: flex;
   align-items: center;
-  /* display: inline-block; */
 }

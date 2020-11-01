@@ -1,5 +1,28 @@
+.ListItem--content.card-content {
+  padding: 12px 16px;
+}
+
+.ListItem--content > .font-size--1,
+.ListItem--content > h5 {
+  margin-bottom: 9px;
+}
+
+.ListItem--stars,
+.ListItem--rating > p {
+  margin-bottom: 0;
+}
+
 .ListItem--bottom-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.ListItem--stars {
+  display: flex;
+}
+
+.ListItem--stars img {
+  width: 16px;
+  height: 16px;
 }

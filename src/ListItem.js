@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { createStarString } from './utils/helpers.js';
 import './ListItem.css';
+//renders HTML string in React
+import parse from 'html-react-parser';
 
 class ListItem extends Component {
   render() {
@@ -7,6 +10,7 @@ class ListItem extends Component {
       image_url,
       url,
       name,
+      rating,
       address,
       city,
       category1,
@@ -20,13 +24,15 @@ class ListItem extends Component {
     //if city isn't Chicago, display city
     let fullAddress = city !== 'Chicago' ? `${address}, ${city}` : `${address}`;
 
+    let starString = createStarString(rating);
+
     return (
       <div className="ListItem--wrapper">
         <div className="card card-wide">
           <figure className="card-wide-image-wrap">
             <img className="card-wide-image" src={image_url} alt={name} />
           </figure>
-          <div className="ListItem card-content">
+          <div className="ListItem--content card-content">
             <h5 className="trailer-half">
               <a href={url}>{name}</a>
             </h5>
@@ -35,14 +41,8 @@ class ListItem extends Component {
             <p className="font-size--1 trailer-half text-light">{categories}</p>
 
             <div className="ListItem--bottom-row">
-              <div>
-                <span className="icon-ui-favorites icon-ui-yellow icon-ui-flush"></span>
-                <span className="icon-ui-favorites icon-ui-yellow icon-ui-flush"></span>
-                <span className="icon-ui-favorites icon-ui-yellow icon-ui-flush"></span>
-                <span className="icon-ui-favorites icon-ui-gray icon-ui-flush"></span>
-                <span className="icon-ui-favorites icon-ui-gray icon-ui-flush"></span>
-              </div>
-              <div>
+              <div className="ListItem--stars">{parse(starString)}</div>
+              <div className="ListItem--rating">
                 <p className="font-size--1 trailer-half">{distanceStr}</p>
               </div>
             </div>

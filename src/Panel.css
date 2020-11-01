@@ -1,5 +1,11 @@
 .Panel--wrapper {
   width: 35%;
-  /* display: flex;
-  flex-direction: column; */
+}
+
+.Station--wrapper {
+  height: 100px;
+}
+
+h4.Station--header {
+  margin-bottom: 9px;
 }

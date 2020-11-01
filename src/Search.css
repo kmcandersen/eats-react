@@ -1,0 +1,6 @@
+.Search--wrapper {
+  padding: 16px;
+  height: 110px;
+}
+
+/* input-error-message is hidden by default, so you must add the is-active class to it for it to show */

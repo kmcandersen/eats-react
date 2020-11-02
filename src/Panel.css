@@ -6,6 +6,10 @@
   height: 100px;
 }
 
+.Station--wrapper > .panel.modifier-class {
+  background-color: #fff;
+}
+
 .Station--header {
   display: flex;
   flex-direction: row;

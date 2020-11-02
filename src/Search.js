@@ -4,7 +4,7 @@ import './Search.css';
 class Search extends Component {
   render() {
     return (
-      <div className="Search--wrapper">
+      <div className="Search--wrapper panel modifier-class">
         <form>
           <label>
             Search by station name

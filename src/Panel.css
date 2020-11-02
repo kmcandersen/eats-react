@@ -6,6 +6,32 @@
   height: 100px;
 }
 
-h4.Station--header {
+.Station--header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Station--name > h4 {
   margin-bottom: 9px;
 }
+
+.Station--squares {
+  display: flex;
+  position: relative;
+  bottom: 3px;
+}
+
+.Station--color-square {
+  width: 16px;
+  height: 16px;
+  margin: 0 2px;
+}
+
+/* .red-square {
+  width: 16px;
+  height: 16px;
+  background-color: #f8e133;
+  margin: 0 2px;
+} */

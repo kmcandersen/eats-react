@@ -24,3 +24,36 @@ export const createStarString = rating => {
   }
   return stars;
 };
+
+const colorNameToHex = colorName => {
+  switch (colorName) {
+    case 'Blue':
+      return '#1AA2DB';
+    case 'Brown':
+      return '#61361E';
+    case 'Green':
+      return '#159940';
+    case 'Orange':
+      return '#F7482B';
+    case 'Pink':
+      return '#E07FA6';
+    case 'Purple':
+      return '#522A95';
+    case 'Red':
+      return '#C41235';
+    case 'Yellow':
+      return '#F8E133';
+    default:
+      return null;
+  }
+};
+
+export const createLineSquares = lineListStr => {
+  let lineListArr = lineListStr.split(', ');
+  let colorSquares = '';
+  for (let i = 0; i < lineListArr.length; i++) {
+    let hex = colorNameToHex(lineListArr[i]);
+    colorSquares += `<div class='Station--color-square' style='background-color: ${hex}'></div>`;
+  }
+  return colorSquares;
+};

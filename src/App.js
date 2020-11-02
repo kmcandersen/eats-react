@@ -38,7 +38,7 @@ class App extends Component {
       name: 'Roosevelt/Wabash',
       address: '22 E. Roosevelt Road',
       coords: [-87.62659, 41.867405],
-      lines: ['Red', 'Green', 'Orange'],
+      lines: 'Red, Green, Orange',
     };
 
     //sample--delete

@@ -1,7 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import { createLineSquares } from './utils/helpers.js';
 import ListItem from './ListItem';
 import Search from './Search';
 import './Panel.css';
+//renders HTML string in React
+import parse from 'html-react-parser';
 
 class Panel extends Component {
   state = {
@@ -26,13 +29,28 @@ class Panel extends Component {
 
   render() {
     const { selectedSta, items } = this.props;
+
+    let colorSquaresStr;
+
+    if (selectedSta.lines.length) {
+      colorSquaresStr = createLineSquares(selectedSta.lines);
+    }
+
     return (
       <Fragment>
         <div className="Panel--wrapper">
           <Search />
           <div className="Station--wrapper">
             <div className="panel modifier-class">
-              <h4 className="Station--header">{selectedSta.name}</h4>
+              <div className="Station--header">
+                <div className="Station--name">
+                  <h4>{selectedSta.name}</h4>
+                </div>
+                <div className="Station--squares">
+                  {selectedSta.lines.length && parse(colorSquaresStr)}
+                </div>
+              </div>
+
               <p className="trailer-0 text-light">{selectedSta.address}</p>
             </div>
           </div>

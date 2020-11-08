@@ -25,8 +25,7 @@ export const createFeatureArr = arr => {
   let features = [];
   let idCount = 0;
 
-  for (let i = 0; i < arr.length; i++) {
-    let el = arr[i];
+  for (let el of arr) {
     idCount++;
 
     let feature = {};

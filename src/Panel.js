@@ -28,7 +28,7 @@ class Panel extends Component {
   };
 
   render() {
-    const { selectedSta, items } = this.props;
+    const { selectedSta, items, mapLoaded } = this.props;
 
     let colorSquaresStr;
 
@@ -40,28 +40,33 @@ class Panel extends Component {
       <Fragment>
         <div className="Panel--wrapper">
           <Search />
-          <div className="Station--wrapper">
-            <div className="panel modifier-class">
-              <div className="Station--header">
-                <div className="Station--name">
-                  <h4>{selectedSta.name}</h4>
-                </div>
-                <div className="Station--squares">
-                  {selectedSta.lines.length && parse(colorSquaresStr)}
+
+          {mapLoaded && (
+            <div className="Results--wrapper">
+              <div className="Station--wrapper">
+                <div className="panel modifier-class">
+                  <div className="Station--header">
+                    <div className="Station--name">
+                      <h4>{selectedSta.shortname}</h4>
+                    </div>
+                    <div className="Station--squares">
+                      {selectedSta.lines.length && parse(colorSquaresStr)}
+                    </div>
+                  </div>
+
+                  <p className="trailer-0 text-light">{selectedSta.address}</p>
                 </div>
               </div>
-
-              <p className="trailer-0 text-light">{selectedSta.address}</p>
-            </div>
-          </div>
-          {items && (
-            <div
-              className="List--wrapper"
-              style={{ height: this.state.listHeight, overflow: 'scroll' }}
-            >
-              {items.map(item => (
-                <ListItem item={item} key={item.id} />
-              ))}
+              {items && (
+                <div
+                  className="List--wrapper"
+                  style={{ height: this.state.listHeight, overflow: 'scroll' }}
+                >
+                  {items.map(item => (
+                    <ListItem item={item} key={item.id} />
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>

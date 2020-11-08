@@ -6,14 +6,14 @@ export function setGraphics(arr) {
   return loadModules(['esri/Graphic']).then(([Graphic]) => {
     let graphics = [];
     let graphic;
-    for (let i = 0; i < arr.length; i++) {
+    for (let el of arr) {
       graphic = new Graphic({
         geometry: {
           type: 'point',
-          latitude: arr[i].latitude,
-          longitude: arr[i].longitude,
+          latitude: el.latitude,
+          longitude: el.longitude,
         },
-        attributes: arr[i],
+        attributes: el,
       });
       graphics.push(graphic);
     }

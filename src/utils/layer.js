@@ -18,6 +18,7 @@ export const loadLinesLayer = () => {
 export const loadStationsLayer = () => {
   return loadModules(['esri/layers/FeatureLayer']).then(([FeatureLayer]) => {
     const layer = new FeatureLayer({
+      outFields: ['*'],
       url:
         'https://services6.arcgis.com/Wd9JN4VBanznW8Yf/arcgis/rest/services/CTA_Stations/FeatureServer',
       popupTemplate: {

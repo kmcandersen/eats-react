@@ -39,6 +39,8 @@ const colorNameToHex = colorName => {
       return '#E07FA6';
     case 'Purple':
       return '#522A95';
+    case 'Purple Express':
+      return '#522A95';
     case 'Red':
       return '#C41235';
     case 'Yellow':
@@ -51,8 +53,8 @@ const colorNameToHex = colorName => {
 export const createLineSquares = lineListStr => {
   let lineListArr = lineListStr.split(', ');
   let colorSquares = '';
-  for (let i = 0; i < lineListArr.length; i++) {
-    let hex = colorNameToHex(lineListArr[i]);
+  for (let el of lineListArr) {
+    let hex = colorNameToHex(el);
     colorSquares += `<div class='Station--color-square' style='background-color: ${hex}'></div>`;
   }
   return colorSquares;

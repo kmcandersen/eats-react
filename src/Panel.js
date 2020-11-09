@@ -49,8 +49,15 @@ class Panel extends Component {
                     <div className="Station--name">
                       <h4>{selectedSta.shortname}</h4>
                     </div>
-                    <div className="Station--squares">
-                      {selectedSta.lines.length && parse(colorSquaresStr)}
+                    <div className="Station--squares-wrapper">
+                      <a
+                        className="tooltip tooltip-top modifier-class"
+                        aria-label={`${selectedSta.lines} lines`}
+                      >
+                        <div className="Station--squares">
+                          {selectedSta.lines.length && parse(colorSquaresStr)}
+                        </div>
+                      </a>
                     </div>
                   </div>
 

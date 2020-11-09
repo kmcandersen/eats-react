@@ -7,9 +7,6 @@ export const loadLinesLayer = () => {
     const layer = new FeatureLayer({
       url:
         'https://services6.arcgis.com/Wd9JN4VBanznW8Yf/arcgis/rest/services/CTA_Lines/FeatureServer',
-      popupTemplate: {
-        title: '{Name}',
-      },
     });
     return layer;
   });
@@ -21,9 +18,6 @@ export const loadStationsLayer = () => {
       outFields: ['*'],
       url:
         'https://services6.arcgis.com/Wd9JN4VBanznW8Yf/arcgis/rest/services/CTA_Stations/FeatureServer',
-      popupTemplate: {
-        title: '{STA_DESC_N}',
-      },
     });
     return layer;
   });

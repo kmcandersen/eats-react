@@ -89,11 +89,9 @@ class EsriMap extends Component {
                     //change pin color: remove existing selected rest layer, create new one at curr loc--this happens in prevProps.selectedRest[0]
                   }
                 } else if (!response.results.length) {
-                  // if (this._view.popup.visible) {
-                  //   this._view.popup.visible = false;
-                  // }
                   // this.props.removeSelectedSta();
                   // this.props.removeSearchResults();
+                  //}
                 }
                 //end hitTest
               });

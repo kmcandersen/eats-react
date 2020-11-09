@@ -153,7 +153,7 @@ class EsriMap extends Component {
         this._view.whenLayerView(staLayer).then(layerView => {
           // highlight point of selected station (initial selection or when selected via Search, NOT map click)
           let query = staLayer.createQuery();
-          let queryString = `STATION_ID = '${this.props.selectedStaId}'`;
+          let queryString = `STATION_ID = ${this.props.selectedSta.station_id}`;
           query.where = queryString;
           staLayer.queryFeatures(query).then(result => {
             if (highlight) {

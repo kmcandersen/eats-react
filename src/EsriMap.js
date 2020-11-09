@@ -60,6 +60,7 @@ class EsriMap extends Component {
       setTimeout(() => {
         if (this._view) {
           let currResultsLayer = this._view.map.layers.getItemAt(2);
+          // nec--there will always be a currResultsLayer??
           if (currResultsLayer) {
             this._view.map.remove(currResultsLayer);
           }

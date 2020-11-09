@@ -21,7 +21,7 @@ class App extends Component {
     searchResults: [],
     bookmarks: [],
     // searchResults or bookmarks
-    data: '',
+    data: 'none',
     mapLoaded: false,
   };
 
@@ -89,6 +89,7 @@ class App extends Component {
     const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${long}&radius=804&limit=10`;
 
     this.onMapLoad(false);
+    this.setState({ data: 'none' });
 
     await axios
       .get(url, {
@@ -140,6 +141,10 @@ class App extends Component {
   onMapLoad = boolean => {
     this.setState({ mapLoaded: boolean });
   };
+
+  // changeData = type => {
+  //   this.setState({ data: type });
+  // };
 
   // removeSelectedSta = () => {
   //   console.log('removed');

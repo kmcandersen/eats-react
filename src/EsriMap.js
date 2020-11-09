@@ -147,25 +147,27 @@ class EsriMap extends Component {
     if (
       this.props.selectedSta.station_id !== prevProps.selectedSta.station_id
     ) {
-      if (this._view) {
-        // index of stations layer:
-        const staLayer = this._view.map.layers.getItemAt(1);
-        this._view.whenLayerView(staLayer).then(layerView => {
-          // highlight point of selected station (initial selection or when selected via Search, NOT map click)
-          let query = staLayer.createQuery();
-          let queryString = `STATION_ID = ${this.props.selectedSta.station_id}`;
-          query.where = queryString;
-          staLayer.queryFeatures(query).then(result => {
-            if (highlight) {
-              highlight.remove();
-            }
-            highlight = layerView.highlight(result.features);
+      setTimeout(() => {
+        if (this._view) {
+          // index of stations layer:
+          const staLayer = this._view.map.layers.getItemAt(1);
+          this._view.whenLayerView(staLayer).then(layerView => {
+            // highlight point of selected station (initial selection or when selected via Search, NOT map click)
+            let query = staLayer.createQuery();
+            let queryString = `STATION_ID = ${this.props.selectedSta.station_id}`;
+            query.where = queryString;
+            staLayer.queryFeatures(query).then(result => {
+              if (highlight) {
+                highlight.remove();
+              }
+              highlight = layerView.highlight(result.features);
+            });
+            //whenLayerView--staLayer
           });
-          //whenLayerView--staLayer
-        });
 
-        //this._view
-      }
+          //this._view
+        }
+      }, 200);
       //props.selectedSta
     }
   }

@@ -36,6 +36,8 @@ class Panel extends Component {
       colorSquaresStr = createLineSquares(selectedSta.lines);
     }
 
+    let lineQty = selectedSta.lines.split(', ').length > 1 ? 'lines' : 'line';
+
     return (
       <Fragment>
         <div className="Panel--wrapper">
@@ -52,7 +54,7 @@ class Panel extends Component {
                     <div className="Station--squares-wrapper">
                       <a
                         className="tooltip tooltip-top modifier-class"
-                        aria-label={`${selectedSta.lines} lines`}
+                        aria-label={`${selectedSta.lines} ${lineQty}`}
                       >
                         <div className="Station--squares">
                           {selectedSta.lines.length && parse(colorSquaresStr)}

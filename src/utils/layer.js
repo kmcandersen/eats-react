@@ -26,9 +26,10 @@ export const loadStationsLayer = () => {
 // searchResults arr OR selectedRest (yellow icon) -- an array of one
 export function loadDataLayer(graphicsArr, color = 'blue') {
   let iconByColor = color === 'yellow' ? yellowIcon : blueIcon;
+  let title = color === 'yellow' ? 'Selected Restaurant' : 'Restaurant Results';
   return loadModules(['esri/layers/FeatureLayer']).then(([FeatureLayer]) => {
     const layer = new FeatureLayer({
-      title: 'Restaurants',
+      title: title,
       copyright: 'Yelp Inc.',
       outFields: [
         'ObjectID',

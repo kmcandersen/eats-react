@@ -54,44 +54,46 @@ class EsriMap extends Component {
     //.then(() => console.log(this._view.map.layers.items), 1000);
   }
 
+  // ** single click = multiple "response.results"
+
   componentDidUpdate(prevProps) {
+    // data = none, searchResults, or Bookmarks
     if (this.props.data !== prevProps.data) {
       //delay nec to capture view
       setTimeout(() => {
         if (this._view) {
-          let currResultsLayer = this._view.map.layers.getItemAt(2);
-          // nec--there will always be a currResultsLayer??
-          if (currResultsLayer) {
-            this._view.map.remove(currResultsLayer);
+          let restLayer = this._view.map.layers.getItemAt(2);
+
+          if (restLayer && this.props.selectedStaId) {
+            this._view.map.remove(restLayer);
           }
           const staLayer = this._view.map.layers.getItemAt(1);
           this._view.whenLayerView(staLayer).then(layerView => {
             console.log('LAYERVIEW', layerView);
             this.props.onMapLoad(true);
 
-            //will need to handle station AND result clicks
-            //mouseover + lines; displays popup
+            // mapClickHandler/hitTest takes clicks & changes appropriate state. Other CDU conditions modify layers accordingly
             const mapClickHandler = event => {
               this._view.hitTest(event).then(response => {
                 if (response.results.length) {
-                  if (highlight) {
-                    highlight.remove();
-                  }
+                  console.log('response.results', response.results);
                   const feature = response.results[0].graphic;
                   if (feature.layer.title === 'CTA Stations Details') {
-                    highlight = layerView.highlight(feature);
+                    if (this.props.selectedRest.length) {
+                      this.props.removeSelectedRest();
+                    }
                     this.props.selectSta(feature.attributes);
-                    let { LAT_1, LONG } = feature.attributes;
-                    this.props.getRestData(LAT_1, LONG);
-                  } else if (feature.layer.title === 'Restaurants') {
-                    console.log('restaurant');
-                    //select restaurant
-                    //change pin color: remove existing selected rest layer, create new one at curr loc--this happens in prevProps.selectedRest[0]
+                  } else if (feature.layer.title === 'Restaurant Results') {
+                    this.props.selectRest(feature.attributes);
+                  } else if (feature.layer.title === 'Selected Restaurant') {
+                    // if selected rest pin clicked, it sb "deselected"; this empties info, & the change triggers the yellow pin layer's removal below
+                    this.props.removeSelectedRest();
                   }
                 } else if (!response.results.length) {
-                  // this.props.removeSelectedSta();
-                  // this.props.removeSearchResults();
-                  //}
+                  //removes the selected rest pin layer?
+                  if (this.props.selectedRest.length) {
+                    this.props.removeSelectedRest();
+                  }
                 }
                 //end hitTest
               });
@@ -117,16 +119,18 @@ class EsriMap extends Component {
       //end this.props.data
     }
 
-    if (this.props.selectedRest[0] !== prevProps.selectedRest[0]) {
+    // actions can't be only on hitTest bc rest_id could change via panel item click/hover
+    //selectedRestId used bc selectedRest[0].id not directly accessible; need to use arr so can re-use setGraphics func
+    // note that this doesn't remove currSelectedRestLayer if it is re-clicked
+    // ** acct for if new selectedRestId is 0
+    if (this.props.selectedRestId !== prevProps.selectedRestId) {
       setTimeout(() => {
         if (this._view) {
-          //change to use .filter ?
-          // const graphic = response.results.filter(function(result) {
-          //   return result.graphic.layer === hurricanesLayer;
-          // })[0].graphic;
-          let currSelectedRestLayer = this._view.map.layers.getItemAt(3);
-          if (currSelectedRestLayer) {
-            this._view.map.remove(currSelectedRestLayer);
+          let selectedRestLayer = this._view.map.layers.find(layer => {
+            return layer.title === 'Selected Restaurant';
+          });
+          if (selectedRestLayer) {
+            this._view.map.remove(selectedRestLayer);
           }
           setGraphics(this.props.selectedRest)
             .then(graphicsArr => {
@@ -136,28 +140,52 @@ class EsriMap extends Component {
             .then(selectedRestLayer => {
               this._view.map.add(selectedRestLayer);
             });
-          //.then(() => console.log('how many layers?', this._view.map.layers));
           //end this._view
         }
       }, 200);
     }
 
+    // this section incl actions that can be triggered by multiple events: click, search box input, & mouseover
     if (
+      // this condition includes initial load of Roosevelt sta
       this.props.selectedSta.station_id !== prevProps.selectedSta.station_id
     ) {
       setTimeout(() => {
         if (this._view) {
           // index of stations layer:
           const staLayer = this._view.map.layers.getItemAt(1);
+          //seems more reliable but layerView not found initially:
+          // const staLayer = this._view.map.layers.find(layer => {
+          //   return layer.title === 'CTA Stations Details';
+          // });
+          const restLayer = this._view.map.layers.find(layer => {
+            return layer.title === 'Restaurant Results';
+          });
+          // only removes existing results layer if station id change NOT on initial load
+          if (restLayer && this.props.selectedStaId) {
+            this._view.map.remove(restLayer);
+          }
+          const selectedRestLayer = this._view.map.layers.find(layer => {
+            return layer.title === 'Selected Restaurant';
+          });
+          if (selectedRestLayer) {
+            this._view.map.remove(selectedRestLayer);
+          }
+          // only initiates API call if station id change NOT on initial load
+          if (this.props.selectedStaId) {
+            let longitude = this.props.selectedSta.coords[0];
+            let latitude = this.props.selectedSta.coords[1];
+            this.props.getRestData(latitude, longitude);
+          }
           this._view.whenLayerView(staLayer).then(layerView => {
-            // highlight point of selected station (initial selection or when selected via Search, NOT map click)
+            if (highlight) {
+              highlight.remove();
+            }
+            // highlight point of selected station (initial selection or when selected via Search, NOT map click--that's in hitTest)
             let query = staLayer.createQuery();
             let queryString = `STATION_ID = ${this.props.selectedSta.station_id}`;
             query.where = queryString;
             staLayer.queryFeatures(query).then(result => {
-              if (highlight) {
-                highlight.remove();
-              }
               highlight = layerView.highlight(result.features);
             });
             //whenLayerView--staLayer

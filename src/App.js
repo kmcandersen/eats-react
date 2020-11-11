@@ -14,9 +14,11 @@ class App extends Component {
       shortname: '',
       address: '',
       lines: '',
-      sta_desc_n: '',
       coords: [],
     },
+    // needed bc arr contents not directly accessible; same as selectedRest[0].station_id
+    selectedRestId: 0,
+    //must be arr, so cb used in setGraphics(arr)
     selectedRest: [],
     searchResults: [],
     bookmarks: [],
@@ -31,34 +33,12 @@ class App extends Component {
     const url = `https://cors-anywhere.herokuapp.com/http://gafinal.herokuapp.com/?term=restaurant&latitude=41.867405&longitude=-87.62659&radius=804&limit=10`;
 
     const selectedStaInfo = {
-      // id: 760,
-      // name: 'Granville',
-      // address: '1119 W. Granville Ave.',
-      // coords: [-87.659202, 41.993664],
-      // lines: ['red'],
       station_id: 410,
       shortname: 'Roosevelt',
       address: '22 E. Roosevelt Road',
       lines: 'Red, Green, Orange',
-      sta_desc_n: 'Roosevelt (Red, Orange & Green Lines)',
       coords: [-87.62659, 41.867405],
     };
-
-    //sample--delete
-    // const selectedRestInfo = {
-    //   latitude: 41.8653913003346,
-    //   longitude: -87.6260132093555,
-    //   distance: 987,
-    //   id: '3BKnY2wzy4QM20Fr1nqDsg',
-    //   image_url:
-    //     'https://s3-media3.fl.yelpcdn.com/bphoto/CCbcgS9VzaJYRXiPAsYglg/o.jpg',
-    //   address: '1310 S Wabash Ave',
-    //   city: 'Evanston',
-    //   name: 'Flo & Santos',
-    //   rating: 4,
-    //   url:
-    //     'https://www.yelp.com/biz/flo-and-santos-chicago-3?adjust_creative=yBSQxTfRYukNfg2kMSU4Sw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=yBSQxTfRYukNfg2kMSU4Sw',
-    // };
 
     axios
       .get(url, {
@@ -70,10 +50,8 @@ class App extends Component {
       .then(res => {
         if (res.data.businesses && res.data.businesses[0].categories) {
           let searchResults = createFeatureArr(res.data.businesses);
-
           this.setState({
             selectedSta: selectedStaInfo,
-            // selectedRest: [selectedRestInfo],
             searchResults: searchResults,
             data: 'searchResults',
           });
@@ -84,12 +62,14 @@ class App extends Component {
       });
   }
 
-  getRestData = async (lat, long) => {
-    // using heroku url = cors error here
-    const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${lat}&longitude=${long}&radius=804&limit=10`;
-
+  getRestData = async (latitude, longitude) => {
     this.onMapLoad(false);
-    this.setState({ data: 'none' });
+    this.setState({
+      data: 'none',
+    });
+
+    // using heroku url = cors error here
+    const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${latitude}&longitude=${longitude}&radius=804&limit=10`;
 
     await axios
       .get(url, {
@@ -112,13 +92,6 @@ class App extends Component {
       });
   };
 
-  // componentDidUpdate(prevState) {
-  //   if (this.state.selectedStaId !== prevState.selectedStaId) {
-  //     console.log('CDU');
-
-  //   }
-  // }
-
   selectSta = selectedStaAllInfo => {
     let selectedStaInfo = {
       station_id: selectedStaAllInfo.STATION_ID,
@@ -133,8 +106,30 @@ class App extends Component {
     };
 
     this.setState({
-      selectedStaId: selectedStaAllInfo.STATION_ID,
       selectedSta: selectedStaInfo,
+      selectedStaId: selectedStaInfo.station_id,
+    });
+  };
+
+  selectRest = selectedRestAllInfo => {
+    let selectedRestInfo = {
+      ObjectID: selectedRestAllInfo.ObjectID,
+      id: selectedRestAllInfo.id,
+      name: selectedRestAllInfo.name,
+      latitude: selectedRestAllInfo.latitude,
+      longitude: selectedRestAllInfo.longitude,
+    };
+
+    this.setState({
+      selectedRestId: selectedRestInfo.id,
+      selectedRest: [selectedRestInfo],
+    });
+  };
+
+  removeSelectedRest = () => {
+    this.setState({
+      selectedRestId: 0,
+      selectedRest: [],
     });
   };
 
@@ -142,30 +137,7 @@ class App extends Component {
     this.setState({ mapLoaded: boolean });
   };
 
-  // changeData = type => {
-  //   this.setState({ data: type });
-  // };
-
-  // removeSelectedSta = () => {
-  //   console.log('removed');
-  //   this.setState({
-  //     selectedStaId: 0,
-  //     selectedSta: {
-  //       id: 0,
-  //       name: '',
-  //       address: '',
-  //       coords: [],
-  //       lines: [],
-  //     },
-  //   });
-  // };
-
-  // removeSearchResults = () => {
-  //   this.setState({ searchResults: [] });
-  // };
-
   render() {
-    // const { selectedSta, selectedRest, data, searchResults, onMapLoad } = this.state;
     return (
       <div>
         <Header />
@@ -180,10 +152,10 @@ class App extends Component {
           <EsriMap
             {...this.state}
             selectSta={this.selectSta}
+            selectRest={this.selectRest}
+            removeSelectedRest={this.removeSelectedRest}
             onMapLoad={this.onMapLoad}
             getRestData={this.getRestData}
-            // removeSelectedSta={this.removeSelectedSta}
-            // removeSearchResults={this.removeSearchResults}
           />
         </main>
       </div>

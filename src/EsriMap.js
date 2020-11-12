@@ -11,8 +11,7 @@ import './EsriMap.css';
 //import yellowIcon from './img/map-pin-yellow.svg';
 
 let highlight;
-//let mapClickListener;
-//let stationsLayer;
+let mapClickListener;
 
 class EsriMap extends Component {
   constructor(props) {
@@ -34,27 +33,13 @@ class EsriMap extends Component {
         this._view = view;
         loadHome(this._view);
         loadLocate(this._view);
-        //this.props.setSampleArtwork(sampleArtwork);
         let staLayer = loadStationsLayer();
         this._view.map.add(staLayer);
-        //return stationsLayer;
       })
       .then(() => {
         this._view.map.add(loadLinesLayer());
       });
-
-    // if (this._view) {
-    //   console.log('VIEW');
-    //   setTimeout(() => {
-    //     this._view.whenLayerView(stationsLayer).then(layerView => {
-    //       console.log('LAYERVIEW', layerView);
-    //     });
-    //   }, 1000);
-    // }
-    //.then(() => console.log(this._view.map.layers.items), 1000);
   }
-
-  // ** single click = multiple "response.results"
 
   componentDidUpdate(prevProps) {
     // data = none, searchResults, or Bookmarks
@@ -62,6 +47,11 @@ class EsriMap extends Component {
       //delay nec to capture view
       setTimeout(() => {
         if (this._view) {
+          //so click listeners don't accumulate with ea Update & run multiple times
+          if (mapClickListener) {
+            mapClickListener.remove();
+          }
+
           let restLayer = this._view.map.layers.getItemAt(2);
 
           if (restLayer && this.props.selectedStaId) {
@@ -70,10 +60,11 @@ class EsriMap extends Component {
           const staLayer = this._view.map.layers.getItemAt(1);
           this._view.whenLayerView(staLayer).then(layerView => {
             console.log('LAYERVIEW', layerView);
+
             this.props.onMapLoad(true);
 
             // mapClickHandler/hitTest takes clicks & changes appropriate state. Other CDU conditions modify layers accordingly
-            const mapClickHandler = event => {
+            let mapClickHandler = event => {
               this._view.hitTest(event).then(response => {
                 if (response.results.length) {
                   console.log('response.results', response.results);
@@ -90,7 +81,7 @@ class EsriMap extends Component {
                     this.props.removeSelectedRest();
                   }
                 } else if (!response.results.length) {
-                  //removes the selected rest pin layer?
+                  //so the selected rest pin layer is removed (below)
                   if (this.props.selectedRest.length) {
                     this.props.removeSelectedRest();
                   }
@@ -99,7 +90,10 @@ class EsriMap extends Component {
               });
               //end clickHandler
             };
-            this._view.on('immediate-click', mapClickHandler);
+            mapClickListener = this._view.on(
+              'immediate-click',
+              mapClickHandler
+            );
             //end whenLayerView
           });
 
@@ -119,10 +113,8 @@ class EsriMap extends Component {
       //end this.props.data
     }
 
-    // actions can't be only on hitTest bc rest_id could change via panel item click/hover
     //selectedRestId used bc selectedRest[0].id not directly accessible; need to use arr so can re-use setGraphics func
     // note that this doesn't remove currSelectedRestLayer if it is re-clicked
-    // ** acct for if new selectedRestId is 0
     if (this.props.selectedRestId !== prevProps.selectedRestId) {
       setTimeout(() => {
         if (this._view) {
@@ -145,19 +137,18 @@ class EsriMap extends Component {
       }, 200);
     }
 
-    // this section incl actions that can be triggered by multiple events: click, search box input, & mouseover
+    // this section carries out actions that can be triggered by multiple events: click, search box input, & mouseover
+    // this condition includes initial load of Roosevelt sta
     if (
-      // this condition includes initial load of Roosevelt sta
       this.props.selectedSta.station_id !== prevProps.selectedSta.station_id
     ) {
       setTimeout(() => {
         if (this._view) {
           // index of stations layer:
-          const staLayer = this._view.map.layers.getItemAt(1);
-          //seems more reliable but layerView not found initially:
-          // const staLayer = this._view.map.layers.find(layer => {
-          //   return layer.title === 'CTA Stations Details';
-          // });
+          //const staLayer = this._view.map.layers.getItemAt(1);
+          const staLayer = this._view.map.layers.find(layer => {
+            return layer.title === 'CTA Stations Details';
+          });
           const restLayer = this._view.map.layers.find(layer => {
             return layer.title === 'Restaurant Results';
           });

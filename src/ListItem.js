@@ -5,6 +5,13 @@ import './ListItem.css';
 import parse from 'html-react-parser';
 
 class ListItem extends Component {
+  handleClick = () => {
+    if (this.props.selectedRestId === this.props.item.id) {
+      this.props.removeSelectedRest();
+    } else {
+      this.props.selectRest(this.props.item);
+    }
+  };
   render() {
     const {
       id,
@@ -39,6 +46,7 @@ class ListItem extends Component {
             className={`ListItem--content card-content ${
               selectedRest && 'ListItem--selected'
             }`}
+            onClick={this.handleClick}
           >
             <h5 className="trailer-half">
               <a href={url}>{name}</a>

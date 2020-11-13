@@ -1,34 +1,22 @@
 import React, { Component, Fragment } from 'react';
 import { createLineSquares } from './utils/helpers.js';
-import ListItem from './ListItem';
 import Search from './Search';
+import List from './List';
+// import ListItem from './ListItem';
 import './Panel.css';
 //renders HTML string in React
 import parse from 'html-react-parser';
 
 class Panel extends Component {
-  state = {
-    listHeight: 0,
-  };
-
-  componentDidMount = () => {
-    this.getListHeight();
-    window.addEventListener('resize', () => {
-      this.getListHeight();
-    });
-  };
-
-  getListHeight = () => {
-    //header + search + station
-    let elsHeight = 60 + 110 + 100;
-    let listHeight = window.innerHeight - elsHeight;
-    this.setState({
-      listHeight: listHeight,
-    });
-  };
-
   render() {
-    const { selectedSta, items, mapLoaded } = this.props;
+    const {
+      selectedSta,
+      selectedRestId,
+      items,
+      mapLoaded,
+      selectRest,
+      removeSelectedRest,
+    } = this.props;
 
     let colorSquaresStr;
 
@@ -67,14 +55,12 @@ class Panel extends Component {
                 </div>
               </div>
               {items && (
-                <div
-                  className="List--wrapper"
-                  style={{ height: this.state.listHeight, overflow: 'scroll' }}
-                >
-                  {items.map(item => (
-                    <ListItem item={item} key={item.id} />
-                  ))}
-                </div>
+                <List
+                  items={items}
+                  selectedRestId={selectedRestId}
+                  selectRest={selectRest}
+                  removeSelectedRest={removeSelectedRest}
+                />
               )}
             </div>
           )}

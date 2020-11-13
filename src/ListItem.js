@@ -7,6 +7,7 @@ import parse from 'html-react-parser';
 class ListItem extends Component {
   render() {
     const {
+      id,
       image_url,
       url,
       name,
@@ -26,13 +27,19 @@ class ListItem extends Component {
 
     let starString = createStarString(rating);
 
+    let selectedRest = this.props.selectedRestId === id ? true : false;
+
     return (
-      <div className="ListItem--wrapper">
+      <div className="ListItem--wrapper" data-id={id}>
         <div className="card card-wide">
           <figure className="card-wide-image-wrap">
             <img className="card-wide-image" src={image_url} alt={name} />
           </figure>
-          <div className="ListItem--content card-content">
+          <div
+            className={`ListItem--content card-content ${
+              selectedRest && 'ListItem--selected'
+            }`}
+          >
             <h5 className="trailer-half">
               <a href={url}>{name}</a>
             </h5>

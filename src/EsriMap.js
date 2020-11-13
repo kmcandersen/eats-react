@@ -67,7 +67,6 @@ class EsriMap extends Component {
             let mapClickHandler = event => {
               this._view.hitTest(event).then(response => {
                 if (response.results.length) {
-                  console.log('response.results', response.results);
                   const feature = response.results[0].graphic;
                   if (feature.layer.title === 'CTA Stations Details') {
                     if (this.props.selectedRest.length) {

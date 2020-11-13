@@ -144,6 +144,9 @@ class App extends Component {
         <main className="Main--wrapper">
           <Panel
             selectedSta={this.state.selectedSta}
+            selectedRestId={this.state.selectedRestId}
+            selectRest={this.selectRest}
+            removeSelectedRest={this.removeSelectedRest}
             items={
               this.state.data === 'searchResults' && this.state.searchResults
             }

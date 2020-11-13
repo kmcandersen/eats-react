@@ -117,6 +117,7 @@ export function loadDataLayer(graphicsArr, color = 'blue') {
           url: iconByColor,
           width: '30px',
           height: '30px',
+          yoffset: '15px',
         },
       },
     });

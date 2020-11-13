@@ -12,6 +12,7 @@ import './EsriMap.css';
 
 let highlight;
 let mapClickListener;
+//let staLayer;
 
 class EsriMap extends Component {
   constructor(props) {
@@ -38,6 +39,25 @@ class EsriMap extends Component {
       })
       .then(() => {
         this._view.map.add(loadLinesLayer());
+      })
+      .then(() => {
+        this._view.watch('scale', newValue => {
+          let staLayer = this._view.map.layers.find(layer => {
+            return layer.title === 'CTA Stations Details';
+          });
+          const renderer = staLayer.renderer.clone();
+          if (newValue >= 577790.554289) {
+            renderer.symbol.size = 4.5;
+            renderer.symbol.outline.width = 0.6;
+          } else if (newValue >= 144447.638572) {
+            renderer.symbol.size = 6;
+            renderer.symbol.outline.width = 0.7;
+          } else {
+            renderer.symbol.size = 8;
+            renderer.symbol.outline.width = 1.1;
+          }
+          staLayer.renderer = renderer;
+        });
       });
   }
 

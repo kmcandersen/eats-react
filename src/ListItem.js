@@ -12,6 +12,7 @@ class ListItem extends Component {
       this.props.selectRest(this.props.item);
     }
   };
+
   render() {
     const {
       id,

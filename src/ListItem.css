@@ -2,6 +2,10 @@
   padding: 12px 16px;
 }
 
+.ListItem--content.card-content:hover {
+  cursor: pointer;
+}
+
 .ListItem--selected {
   background-color: rgba(0, 0, 0, 0.04);
 }

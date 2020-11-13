@@ -40,30 +40,38 @@ class EsriMap extends Component {
       .then(() => {
         this._view.map.add(loadLinesLayer());
       })
-      .then(() => {
-        this._view.watch('scale', newValue => {
-          let staLayer = this._view.map.layers.find(layer => {
-            return layer.title === 'CTA Stations Details';
-          });
-          const renderer = staLayer.renderer.clone();
-          if (newValue >= 577790.554289) {
-            renderer.symbol.size = 4.5;
-            renderer.symbol.outline.width = 0.6;
-          } else if (newValue >= 144447.638572) {
-            renderer.symbol.size = 6;
-            renderer.symbol.outline.width = 0.7;
-          } else {
-            renderer.symbol.size = 8;
-            renderer.symbol.outline.width = 1.1;
-          }
-          staLayer.renderer = renderer;
-        });
+      .catch(err => {
+        console.log(err);
       });
+    // adjusts station symbol size at scale breakpoints, but degrades performance:
+    // .then(() => {
+    //   this._view.watch('scale', newValue => {
+    //     let staLayer = this._view.map.layers.find(layer => {
+    //       return layer.title === 'CTA Stations Details';
+    //     });
+    //     if (staLayer) {
+    //       const renderer = staLayer.renderer.clone();
+    //       if (newValue >= 577790.554289) {
+    //         renderer.symbol.size = 4.5;
+    //         renderer.symbol.outline.width = 0.6;
+    //       } else if (newValue >= 144447.638572) {
+    //         renderer.symbol.size = 6;
+    //         renderer.symbol.outline.width = 0.7;
+    //       } else {
+    //         renderer.symbol.size = 8;
+    //         renderer.symbol.outline.width = 1.1;
+    //       }
+    //       staLayer.renderer = renderer;
+    //     }
+    //   });
+    // });
   }
 
   componentDidUpdate(prevProps) {
     // data = none, searchResults, or Bookmarks
+    // ** seems excessive for this to run 2x every time there's a search (this.state.data changes from searchResults to none to searchResults); prevProps.selectedSta.station_id also runs with ea search
     if (this.props.data !== prevProps.data) {
+      console.log('CDU data running');
       //delay nec to capture view
       setTimeout(() => {
         if (this._view) {
@@ -78,43 +86,48 @@ class EsriMap extends Component {
             this._view.map.remove(restLayer);
           }
           const staLayer = this._view.map.layers.getItemAt(1);
-          this._view.whenLayerView(staLayer).then(layerView => {
-            console.log('LAYERVIEW', layerView);
+          this._view
+            .whenLayerView(staLayer)
+            .then(layerView => {
+              console.log('LAYERVIEW', layerView);
 
-            this.props.onMapLoad(true);
+              this.props.onMapLoad(true);
 
-            // mapClickHandler/hitTest takes clicks & changes appropriate state. Other CDU conditions modify layers accordingly
-            let mapClickHandler = event => {
-              this._view.hitTest(event).then(response => {
-                if (response.results.length) {
-                  const feature = response.results[0].graphic;
-                  if (feature.layer.title === 'CTA Stations Details') {
+              // mapClickHandler/hitTest takes clicks & changes appropriate state. Other CDU conditions modify layers accordingly
+              let mapClickHandler = event => {
+                this._view.hitTest(event).then(response => {
+                  if (response.results.length) {
+                    const feature = response.results[0].graphic;
+                    if (feature.layer.title === 'CTA Stations Details') {
+                      if (this.props.selectedRest.length) {
+                        this.props.removeSelectedRest();
+                      }
+                      this.props.selectSta(feature.attributes);
+                    } else if (feature.layer.title === 'Restaurant Results') {
+                      this.props.selectRest(feature.attributes);
+                    } else if (feature.layer.title === 'Selected Restaurant') {
+                      // if selected rest pin clicked, it sb "deselected"; this empties info, & the change triggers the yellow pin layer's removal below
+                      this.props.removeSelectedRest();
+                    }
+                  } else if (!response.results.length) {
+                    //so the selected rest pin layer is removed (below)
                     if (this.props.selectedRest.length) {
                       this.props.removeSelectedRest();
                     }
-                    this.props.selectSta(feature.attributes);
-                  } else if (feature.layer.title === 'Restaurant Results') {
-                    this.props.selectRest(feature.attributes);
-                  } else if (feature.layer.title === 'Selected Restaurant') {
-                    // if selected rest pin clicked, it sb "deselected"; this empties info, & the change triggers the yellow pin layer's removal below
-                    this.props.removeSelectedRest();
                   }
-                } else if (!response.results.length) {
-                  //so the selected rest pin layer is removed (below)
-                  if (this.props.selectedRest.length) {
-                    this.props.removeSelectedRest();
-                  }
-                }
-                //end hitTest
-              });
-              //end clickHandler
-            };
-            mapClickListener = this._view.on(
-              'immediate-click',
-              mapClickHandler
-            );
-            //end whenLayerView
-          });
+                  //end hitTest
+                });
+                //end clickHandler
+              };
+              mapClickListener = this._view.on(
+                'immediate-click',
+                mapClickHandler
+              );
+              //end whenLayerView
+            })
+            .catch(err => {
+              console.log(err);
+            });
 
           setGraphics(this.props.searchResults)
             .then(graphicsArr => {
@@ -124,7 +137,10 @@ class EsriMap extends Component {
             .then(resultsLayer => this._view.map.add(resultsLayer))
             .then(() =>
               this._view.goTo({ center: this.props.selectedSta.coords })
-            );
+            )
+            .catch(err => {
+              console.log(err);
+            });
           //end this._view
         }
         //end setTimeout
@@ -150,6 +166,9 @@ class EsriMap extends Component {
             })
             .then(selectedRestLayer => {
               this._view.map.add(selectedRestLayer);
+            })
+            .catch(err => {
+              console.log(err);
             });
           //end this._view
         }
@@ -187,24 +206,37 @@ class EsriMap extends Component {
             let latitude = this.props.selectedSta.coords[1];
             this.props.getRestData(latitude, longitude);
           }
-          this._view.whenLayerView(staLayer).then(layerView => {
-            if (highlight) {
-              highlight.remove();
-            }
-            // highlight point of selected station (initial selection or when selected via Search, NOT map click--that's in hitTest)
-            let query = staLayer.createQuery();
-            let queryString = `STATION_ID = ${this.props.selectedSta.station_id}`;
-            query.where = queryString;
-            staLayer.queryFeatures(query).then(result => {
-              highlight = layerView.highlight(result.features);
+          this._view
+            .whenLayerView(staLayer)
+            .then(layerView => {
+              if (highlight) {
+                highlight.remove();
+              }
+              // highlight point of selected station (initial selection or when selected via Search, NOT map click--that's in hitTest)
+              let query = staLayer.createQuery();
+              let queryString = `STATION_ID = ${this.props.selectedSta.station_id}`;
+              query.where = queryString;
+              staLayer.queryFeatures(query).then(result => {
+                highlight = layerView.highlight(result.features);
+              });
+              //whenLayerView--staLayer
+            })
+            .catch(err => {
+              console.log(err);
             });
-            //whenLayerView--staLayer
-          });
 
           //this._view
         }
       }, 200);
       //props.selectedSta
+    }
+    if (this.props.zoomToStaVar !== prevProps.zoomToStaVar) {
+      //delay nec to capture view
+      setTimeout(() => {
+        if (this._view) {
+          this._view.goTo({ center: this.props.selectedSta.coords, zoom: 15 });
+        }
+      });
     }
   }
 

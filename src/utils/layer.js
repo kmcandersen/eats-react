@@ -110,6 +110,7 @@ export function loadDataLayer(graphicsArr, color = 'blue') {
       geometryType: 'point',
       spatialReference: { wkid: 4326 },
       source: graphicsArr || [], // empty arr at first
+      minScale: 72223.819286,
       renderer: {
         type: 'simple', // autocasts as new SimpleRenderer()
         symbol: {

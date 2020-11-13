@@ -6,6 +6,10 @@
   height: 100px;
 }
 
+.Station--wrapper:hover {
+  cursor: pointer;
+}
+
 .Station--wrapper > .panel.modifier-class {
   background-color: #fff;
 }

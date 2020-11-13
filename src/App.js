@@ -25,6 +25,8 @@ class App extends Component {
     // searchResults or bookmarks
     data: 'none',
     mapLoaded: false,
+    //here, t/f has no semantic meaning; it's just a toggle to trigger an update
+    zoomToStaVar: false,
   };
 
   componentDidMount() {
@@ -111,6 +113,10 @@ class App extends Component {
     });
   };
 
+  zoomToSta = () => {
+    this.setState({ zoomToStaVar: !this.state.zoomToStaVar });
+  };
+
   selectRest = selectedRestAllInfo => {
     let selectedRestInfo = {
       ObjectID: selectedRestAllInfo.ObjectID,
@@ -151,6 +157,7 @@ class App extends Component {
               this.state.data === 'searchResults' && this.state.searchResults
             }
             mapLoaded={this.state.mapLoaded}
+            zoomToSta={this.zoomToSta}
           />
           <EsriMap
             {...this.state}

@@ -16,6 +16,7 @@ class Panel extends Component {
       mapLoaded,
       selectRest,
       removeSelectedRest,
+      zoomToSta,
     } = this.props;
 
     let colorSquaresStr;
@@ -33,7 +34,7 @@ class Panel extends Component {
 
           {mapLoaded && (
             <div className="Results--wrapper">
-              <div className="Station--wrapper">
+              <div className="Station--wrapper" onClick={zoomToSta}>
                 <div className="panel modifier-class">
                   <div className="Station--header">
                     <div className="Station--name">

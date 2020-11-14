@@ -6,10 +6,6 @@
   height: 100px;
 }
 
-.Station--wrapper:hover {
-  cursor: pointer;
-}
-
 .Station--wrapper > .panel.modifier-class {
   background-color: #fff;
 }
@@ -21,8 +17,27 @@
   justify-content: space-between;
 }
 
+.Station--name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .Station--name > h4 {
   margin-bottom: 9px;
+}
+
+.Station--name > .Station--name-zoom {
+  margin-left: 5px;
+  position: relative;
+  bottom: 3px;
+  transition: 500ms;
+}
+
+.Station--name > .Station--name-zoom:hover {
+  cursor: pointer;
+  opacity: 100%;
 }
 
 .Station--squares-wrapper > a {
@@ -34,6 +49,10 @@
   display: flex;
   position: relative;
   bottom: 3px;
+}
+
+.Station--squares:hover {
+  cursor: default;
 }
 
 .Station--color-square {

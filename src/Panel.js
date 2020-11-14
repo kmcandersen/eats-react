@@ -34,11 +34,15 @@ class Panel extends Component {
 
           {mapLoaded && (
             <div className="Results--wrapper">
-              <div className="Station--wrapper" onClick={zoomToSta}>
+              <div className="Station--wrapper">
                 <div className="panel modifier-class">
                   <div className="Station--header">
                     <div className="Station--name">
                       <h4>{selectedSta.shortname}</h4>
+                      <div
+                        className="Station--name-zoom esri-icon-zoom-in-magnifying-glass text-light"
+                        onClick={zoomToSta}
+                      ></div>
                     </div>
                     <div className="Station--squares-wrapper">
                       <a
@@ -51,7 +55,6 @@ class Panel extends Component {
                       </a>
                     </div>
                   </div>
-
                   <p className="trailer-0 text-light">{selectedSta.address}</p>
                 </div>
               </div>

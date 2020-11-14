@@ -20,6 +20,8 @@ class App extends Component {
     selectedRestId: 0,
     //must be arr, so cb used in setGraphics(arr)
     selectedRest: [],
+    //flag if ListItem should scrollIntoView
+    restSelectedOnMap: false,
     searchResults: [],
     bookmarks: [],
     // searchResults or bookmarks
@@ -117,7 +119,7 @@ class App extends Component {
     this.setState({ zoomToStaVar: !this.state.zoomToStaVar });
   };
 
-  selectRest = selectedRestAllInfo => {
+  selectRest = (selectedRestAllInfo, bool) => {
     let selectedRestInfo = {
       ObjectID: selectedRestAllInfo.ObjectID,
       id: selectedRestAllInfo.id,
@@ -129,6 +131,7 @@ class App extends Component {
     this.setState({
       selectedRestId: selectedRestInfo.id,
       selectedRest: [selectedRestInfo],
+      restSelectedOnMap: bool,
     });
   };
 
@@ -158,6 +161,7 @@ class App extends Component {
             }
             mapLoaded={this.state.mapLoaded}
             zoomToSta={this.zoomToSta}
+            restSelectedOnMap={this.state.restSelectedOnMap}
           />
           <EsriMap
             {...this.state}

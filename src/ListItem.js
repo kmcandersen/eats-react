@@ -9,7 +9,7 @@ class ListItem extends Component {
     if (this.props.selectedRestId === this.props.item.id) {
       this.props.removeSelectedRest();
     } else {
-      this.props.selectRest(this.props.item);
+      this.props.selectRest(this.props.item, false);
     }
   };
 

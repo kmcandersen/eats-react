@@ -17,27 +17,8 @@
   justify-content: space-between;
 }
 
-.Station--name {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .Station--name > h4 {
   margin-bottom: 9px;
-}
-
-.Station--name > .Station--name-zoom {
-  margin-left: 5px;
-  position: relative;
-  bottom: 3px;
-  transition: 500ms;
-}
-
-.Station--name > .Station--name-zoom:hover {
-  cursor: pointer;
-  opacity: 100%;
 }
 
 .Station--squares-wrapper > a {
@@ -59,4 +40,20 @@
   width: 16px;
   height: 16px;
   margin: 0 2px;
+}
+
+.Station--details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Station--details > .Station--details-zoom {
+  transition: 500ms;
+}
+
+.Station--details > .Station--details-zoom:hover {
+  cursor: pointer;
+  opacity: 100%;
 }

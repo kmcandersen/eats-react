@@ -102,9 +102,9 @@ class EsriMap extends Component {
                       if (this.props.selectedRest.length) {
                         this.props.removeSelectedRest();
                       }
-                      this.props.selectSta(feature.attributes);
+                      this.props.selectSta(feature.attributes, true);
                     } else if (feature.layer.title === 'Restaurant Results') {
-                      this.props.selectRest(feature.attributes);
+                      this.props.selectRest(feature.attributes, true);
                     } else if (feature.layer.title === 'Selected Restaurant') {
                       // if selected rest pin clicked, it sb "deselected"; this empties info, & the change triggers the yellow pin layer's removal below
                       this.props.removeSelectedRest();

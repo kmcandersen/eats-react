@@ -31,7 +31,10 @@ class List extends Component {
       let results = this.resultsRef.current.childNodes;
       for (let i = 0; i < results.length; i++) {
         if (
-          results[i].attributes['data-id'].value === this.props.selectedRestId
+          results[i].attributes['data-id'].value ===
+            this.props.selectedRestId &&
+          //don't scrollIntoView if ListItem clicked (distracting)
+          this.props.restSelectedOnMap
         ) {
           results[i].scrollIntoView(true);
           //   results[i].scrollIntoView({

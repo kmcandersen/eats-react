@@ -17,6 +17,7 @@ class Panel extends Component {
       selectRest,
       removeSelectedRest,
       zoomToSta,
+      restSelectedOnMap,
     } = this.props;
 
     let colorSquaresStr;
@@ -39,10 +40,6 @@ class Panel extends Component {
                   <div className="Station--header">
                     <div className="Station--name">
                       <h4>{selectedSta.shortname}</h4>
-                      <div
-                        className="Station--name-zoom esri-icon-zoom-in-magnifying-glass text-light"
-                        onClick={zoomToSta}
-                      ></div>
                     </div>
                     <div className="Station--squares-wrapper">
                       <a
@@ -55,7 +52,15 @@ class Panel extends Component {
                       </a>
                     </div>
                   </div>
-                  <p className="trailer-0 text-light">{selectedSta.address}</p>
+                  <div className="Station--details">
+                    <p className="trailer-0 text-light">
+                      {selectedSta.address}
+                    </p>
+                    <div
+                      className="Station--details-zoom esri-icon-zoom-in-magnifying-glass text-light"
+                      onClick={zoomToSta}
+                    ></div>
+                  </div>
                 </div>
               </div>
               {items && (
@@ -64,6 +69,7 @@ class Panel extends Component {
                   selectedRestId={selectedRestId}
                   selectRest={selectRest}
                   removeSelectedRest={removeSelectedRest}
+                  restSelectedOnMap={restSelectedOnMap}
                 />
               )}
             </div>

@@ -81,17 +81,20 @@ class EsriMap extends Component {
           }
 
           // .find layers is flexible but doesn't work here
-          let restLayer = this._view.map.layers.getItemAt(2);
-
-          if (restLayer && this.props.selectedStaId) {
-            this._view.map.remove(restLayer);
-          }
-
           const staLayer = this._view.map.layers.getItemAt(1);
+
           this._view
             .whenLayerView(staLayer)
             .then(layerView => {
               console.log('LAYERVIEW', layerView);
+
+              const restLayer = this._view.map.layers.find(layer => {
+                return layer.title === 'Restaurant Results';
+              });
+              if (restLayer && this.props.selectedStaId) {
+                this._view.map.remove(restLayer);
+              }
+
               //to highlight Roosevelt on initial load
               if (prevProps.selectedStaId === 0) {
                 let query = staLayer.createQuery();
@@ -194,16 +197,12 @@ class EsriMap extends Component {
       console.log('CDU station_id running');
       setTimeout(() => {
         if (this._view) {
-          // index of stations layer:
-          //const staLayer = this._view.map.layers.getItemAt(1);
-          // const staLayer = this._view.map.layers.find(layer => {
-          //   return layer.title === 'CTA Stations Details';
-          // });
-          // const restLayer = this._view.map.layers.find(layer => {
-          //   return layer.title === 'Restaurant Results';
-          // });
-          let staLayer = this._view.map.layers.getItemAt(1);
-          let restLayer = this._view.map.layers.getItemAt(2);
+          const staLayer = this._view.map.layers.find(layer => {
+            return layer.title === 'CTA Stations Details';
+          });
+          const restLayer = this._view.map.layers.find(layer => {
+            return layer.title === 'Restaurant Results';
+          });
           // only removes existing results layer if station id change NOT on initial load
           if (restLayer && this.props.selectedStaId) {
             this._view.map.remove(restLayer);

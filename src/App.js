@@ -88,8 +88,9 @@ class App extends Component {
       station_id: selectedStaAllInfo.STATION_ID,
       shortname: selectedStaAllInfo.SHORTNAME,
       address: selectedStaAllInfo.ADDRESS,
+      city: selectedStaAllInfo.CITY,
       lines: selectedStaAllInfo.LINE_LIST,
-      sta_desc_n: selectedStaAllInfo.STA_DESC_N,
+      dup_name: selectedStaAllInfo.DUP_NAME,
       coords: [
         Number(selectedStaAllInfo.LONG),
         Number(selectedStaAllInfo.LAT_1),

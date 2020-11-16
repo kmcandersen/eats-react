@@ -10,7 +10,12 @@ import parse from 'html-react-parser';
 class Panel extends Component {
   render() {
     const {
+      selectSta,
       selectedSta,
+      clickMapSta,
+      clickedMapSta,
+      // optionSta,
+      // selectOptionSta,
       selectedRestId,
       items,
       mapLoaded,
@@ -31,7 +36,11 @@ class Panel extends Component {
     return (
       <Fragment>
         <div className="Panel--wrapper">
-          <Search />
+          <Search
+            selectSta={selectSta}
+            clickMapSta={clickMapSta}
+            clickedMapSta={clickedMapSta}
+          />
 
           {mapLoaded && (
             <div className="Results--wrapper">

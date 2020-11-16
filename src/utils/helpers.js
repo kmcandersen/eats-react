@@ -41,6 +41,8 @@ const colorNameToHex = colorName => {
       return '#522A95';
     case 'Purple Express':
       return '#522A95';
+    case 'Purple Exp':
+      return '#522A95';
     case 'Red':
       return '#C41235';
     case 'Yellow':

@@ -16,6 +16,8 @@ class App extends Component {
       lines: '',
       coords: [],
     },
+    //used with Search to capture dropdown selection
+    optionSta: null,
     // needed bc arr contents not directly accessible; same as selectedRest[0].station_id
     selectedRestId: 0,
     //must be arr, so cb used in setGraphics(arr)
@@ -29,6 +31,8 @@ class App extends Component {
     mapLoaded: false,
     //here, t/f has no semantic meaning; it's just a toggle to trigger an update
     zoomToStaVar: false,
+    //becomes true when a sta is selected via map (emptying Search box)
+    clickedMapSta: false,
   };
 
   componentDidMount() {
@@ -88,8 +92,9 @@ class App extends Component {
       station_id: selectedStaAllInfo.STATION_ID,
       shortname: selectedStaAllInfo.SHORTNAME,
       address: selectedStaAllInfo.ADDRESS,
+      city: selectedStaAllInfo.CITY,
       lines: selectedStaAllInfo.LINE_LIST,
-      sta_desc_n: selectedStaAllInfo.STA_DESC_N,
+      dup_name: selectedStaAllInfo.DUP_NAME,
       coords: [
         Number(selectedStaAllInfo.LONG),
         Number(selectedStaAllInfo.LAT_1),
@@ -100,6 +105,10 @@ class App extends Component {
       selectedSta: selectedStaInfo,
       selectedStaId: selectedStaInfo.station_id,
     });
+  };
+
+  clickMapSta = bool => {
+    this.setState({ clickedMapSta: bool });
   };
 
   zoomToSta = () => {
@@ -139,7 +148,10 @@ class App extends Component {
         <Header />
         <main className="Main--wrapper">
           <Panel
+            selectSta={this.selectSta}
             selectedSta={this.state.selectedSta}
+            clickedMapSta={this.state.clickedMapSta}
+            clickMapSta={this.clickMapSta}
             selectedRestId={this.state.selectedRestId}
             selectRest={this.selectRest}
             removeSelectedRest={this.removeSelectedRest}
@@ -153,6 +165,7 @@ class App extends Component {
           <EsriMap
             {...this.state}
             selectSta={this.selectSta}
+            clickMapSta={this.clickMapSta}
             selectRest={this.selectRest}
             removeSelectedRest={this.removeSelectedRest}
             onMapLoad={this.onMapLoad}

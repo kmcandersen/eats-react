@@ -12,6 +12,10 @@ class Panel extends Component {
     const {
       selectSta,
       selectedSta,
+      clickMapSta,
+      clickedMapSta,
+      // optionSta,
+      // selectOptionSta,
       selectedRestId,
       items,
       mapLoaded,
@@ -32,7 +36,11 @@ class Panel extends Component {
     return (
       <Fragment>
         <div className="Panel--wrapper">
-          <Search selectSta={selectSta} />
+          <Search
+            selectSta={selectSta}
+            clickMapSta={clickMapSta}
+            clickedMapSta={clickedMapSta}
+          />
 
           {mapLoaded && (
             <div className="Results--wrapper">

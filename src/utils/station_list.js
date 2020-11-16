@@ -3,6 +3,7 @@
 export const station_list = [
   {
     STATION_ID: 830,
+    DISPLAY_NAME: '18th - Pink',
     SHORTNAME: '18th',
     ADDRESS: '1710 W. 18th Street',
     CITY: 'Chicago',
@@ -13,6 +14,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1120,
+    DISPLAY_NAME: '35th-Bronzeville-IIT - Green',
     SHORTNAME: '35th-Bronzeville-IIT',
     ADDRESS: '16 E. 35th Street',
     CITY: 'Chicago',
@@ -23,6 +25,7 @@ export const station_list = [
   },
   {
     STATION_ID: 120,
+    DISPLAY_NAME: '35th/Archer - Orange',
     SHORTNAME: '35th/Archer',
     ADDRESS: '3528 S. Leavitt Street',
     CITY: 'Chicago',
@@ -33,6 +36,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1270,
+    DISPLAY_NAME: '43rd - Green',
     SHORTNAME: '43rd',
     ADDRESS: '314 E. 43rd Street',
     CITY: 'Chicago',
@@ -43,6 +47,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1230,
+    DISPLAY_NAME: '47th - Red',
     SHORTNAME: '47th',
     ADDRESS: '220 W. 47th Street',
     CITY: 'Chicago',
@@ -53,6 +58,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1080,
+    DISPLAY_NAME: '47th - Green',
     SHORTNAME: '47th',
     ADDRESS: '314 E. 47th Street',
     CITY: 'Chicago',
@@ -63,6 +69,7 @@ export const station_list = [
   },
   {
     STATION_ID: 130,
+    DISPLAY_NAME: '51st - Green',
     SHORTNAME: '51st',
     ADDRESS: '314 E. 51st Street',
     CITY: 'Chicago',
@@ -73,6 +80,7 @@ export const station_list = [
   },
   {
     STATION_ID: 580,
+    DISPLAY_NAME: '54th/Cermak - Pink',
     SHORTNAME: '54th/Cermak',
     ADDRESS: '2134 S. 54th Avenue',
     CITY: 'Cicero',
@@ -83,6 +91,7 @@ export const station_list = [
   },
   {
     STATION_ID: 910,
+    DISPLAY_NAME: '63rd - Red',
     SHORTNAME: '63rd',
     ADDRESS: '220 W. 63rd Street',
     CITY: 'Chicago',
@@ -93,6 +102,7 @@ export const station_list = [
   },
   {
     STATION_ID: 990,
+    DISPLAY_NAME: '69th - Red',
     SHORTNAME: '69th',
     ADDRESS: '15 W. 69th Street',
     CITY: 'Chicago',
@@ -103,6 +113,7 @@ export const station_list = [
   },
   {
     STATION_ID: 240,
+    DISPLAY_NAME: '79th - Red',
     SHORTNAME: '79th',
     ADDRESS: '15 W. 79th Street',
     CITY: 'Chicago',
@@ -113,6 +124,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1430,
+    DISPLAY_NAME: '87th - Red',
     SHORTNAME: '87th',
     ADDRESS: '15 W. 87th Street',
     CITY: 'Chicago',
@@ -123,6 +135,7 @@ export const station_list = [
   },
   {
     STATION_ID: 450,
+    DISPLAY_NAME: '95th/Dan Ryan - Red',
     SHORTNAME: '95th/Dan Ryan',
     ADDRESS: '14 W. 95th Street',
     CITY: 'Chicago',
@@ -133,16 +146,18 @@ export const station_list = [
   },
   {
     STATION_ID: 680,
+    DISPLAY_NAME: 'Adams/Wabash - Brown, Orange, Pink, Purple Express, Green',
     SHORTNAME: 'Adams/Wabash',
     ADDRESS: '201 S. Wabash Avenue',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Orange, Pink, Purple Exp, Green',
+    LINE_LIST: 'Brown, Orange, Pink, Purple Express, Green',
     DUP_NAME: 0,
     LAT_1: 41.879507,
     LONG: -87.626037,
   },
   {
     STATION_ID: 1440,
+    DISPLAY_NAME: 'Addison - Brown',
     SHORTNAME: 'Addison',
     ADDRESS: '1818 W. Addison Street',
     CITY: 'Chicago',
@@ -153,6 +168,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1420,
+    DISPLAY_NAME: 'Addison - Red',
     SHORTNAME: 'Addison',
     ADDRESS: '940 W. Addison Street',
     CITY: 'Chicago',
@@ -163,6 +179,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1240,
+    DISPLAY_NAME: 'Addison - Blue',
     SHORTNAME: 'Addison',
     ADDRESS: '3622 W. Addison Street',
     CITY: 'Chicago',
@@ -173,6 +190,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1200,
+    DISPLAY_NAME: 'Argyle - Red',
     SHORTNAME: 'Argyle',
     ADDRESS: '1118 W. Argyle Street',
     CITY: 'Chicago',
@@ -183,16 +201,18 @@ export const station_list = [
   },
   {
     STATION_ID: 660,
+    DISPLAY_NAME: 'Armitage - Brown, Purple Express',
     SHORTNAME: 'Armitage',
     ADDRESS: '944 W. Armitage Avenue',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Purple Exp',
+    LINE_LIST: 'Brown, Purple Express',
     DUP_NAME: 0,
     LAT_1: 41.918217,
     LONG: -87.652644,
   },
   {
     STATION_ID: 170,
+    DISPLAY_NAME: 'Ashland - Green, Pink',
     SHORTNAME: 'Ashland',
     ADDRESS: '1601 W. Lake Street',
     CITY: 'Chicago',
@@ -203,6 +223,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1060,
+    DISPLAY_NAME: 'Ashland - Orange',
     SHORTNAME: 'Ashland',
     ADDRESS: '3011 S. Ashland Avenue',
     CITY: 'Chicago',
@@ -213,6 +234,7 @@ export const station_list = [
   },
   {
     STATION_ID: 290,
+    DISPLAY_NAME: 'Ashland/63rd - Green',
     SHORTNAME: 'Ashland/63rd',
     ADDRESS: '6315 S. Ashland Avenue',
     CITY: 'Chicago',
@@ -223,6 +245,7 @@ export const station_list = [
   },
   {
     STATION_ID: 10,
+    DISPLAY_NAME: 'Austin - Blue',
     SHORTNAME: 'Austin',
     ADDRESS: '1050 S. Austin Blvd',
     CITY: 'Oak Park',
@@ -233,6 +256,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1260,
+    DISPLAY_NAME: 'Austin - Green',
     SHORTNAME: 'Austin',
     ADDRESS: '351 N. Austin Blvd',
     CITY: 'Chicago',
@@ -243,6 +267,7 @@ export const station_list = [
   },
   {
     STATION_ID: 60,
+    DISPLAY_NAME: 'Belmont - Blue',
     SHORTNAME: 'Belmont',
     ADDRESS: '3355 W. Belmont Avenue',
     CITY: 'Chicago',
@@ -253,16 +278,18 @@ export const station_list = [
   },
   {
     STATION_ID: 1320,
+    DISPLAY_NAME: 'Belmont - Red, Brown, Purple Express',
     SHORTNAME: 'Belmont',
     ADDRESS: '945 W. Belmont Avenue',
     CITY: 'Chicago',
-    LINE_LIST: 'Red, Brown, Purple Exp',
+    LINE_LIST: 'Red, Brown, Purple Express',
     DUP_NAME: 1,
     LAT_1: 41.939751,
     LONG: -87.65338,
   },
   {
     STATION_ID: 340,
+    DISPLAY_NAME: 'Berwyn - Red',
     SHORTNAME: 'Berwyn',
     ADDRESS: '1121 W. Berwyn Avenue',
     CITY: 'Chicago',
@@ -273,6 +300,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1380,
+    DISPLAY_NAME: 'Bryn Mawr - Red',
     SHORTNAME: 'Bryn Mawr',
     ADDRESS: '1119 W. Bryn Mawr Avenue',
     CITY: 'Chicago',
@@ -283,6 +311,7 @@ export const station_list = [
   },
   {
     STATION_ID: 570,
+    DISPLAY_NAME: 'California - Blue',
     SHORTNAME: 'California',
     ADDRESS: '2211 N. California Avenue',
     CITY: 'Chicago',
@@ -293,6 +322,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1360,
+    DISPLAY_NAME: 'California - Green',
     SHORTNAME: 'California',
     ADDRESS: '2800 W. Lake Street',
     CITY: 'Chicago',
@@ -303,6 +333,7 @@ export const station_list = [
   },
   {
     STATION_ID: 440,
+    DISPLAY_NAME: 'California - Pink',
     SHORTNAME: 'California',
     ADDRESS: '2011 S. California Avenue',
     CITY: 'Chicago',
@@ -313,6 +344,7 @@ export const station_list = [
   },
   {
     STATION_ID: 280,
+    DISPLAY_NAME: 'Central - Green',
     SHORTNAME: 'Central',
     ADDRESS: '350 N. Central Avenue',
     CITY: 'Chicago',
@@ -323,6 +355,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1250,
+    DISPLAY_NAME: 'Central - Purple',
     SHORTNAME: 'Central',
     ADDRESS: '1022 W. Central Avenue',
     CITY: 'Evanston',
@@ -333,6 +366,7 @@ export const station_list = [
   },
   {
     STATION_ID: 780,
+    DISPLAY_NAME: 'Central Park - Pink',
     SHORTNAME: 'Central Park',
     ADDRESS: '1915 S. Central Park Avenue',
     CITY: 'Chicago',
@@ -343,6 +377,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1000,
+    DISPLAY_NAME: 'Cermak-Chinatown - Red',
     SHORTNAME: 'Cermak-Chinatown',
     ADDRESS: '138 W. Cermak Road',
     CITY: 'Chicago',
@@ -353,6 +388,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1690,
+    DISPLAY_NAME: 'Cermak-McCormick Place - Green',
     SHORTNAME: 'Cermak-McCormick Place',
     ADDRESS: '12 E. Cermak Rd.',
     CITY: 'Chicago',
@@ -363,6 +399,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1450,
+    DISPLAY_NAME: 'Chicago - Red',
     SHORTNAME: 'Chicago',
     ADDRESS: '800 N. State Street',
     CITY: 'Chicago',
@@ -373,16 +410,18 @@ export const station_list = [
   },
   {
     STATION_ID: 710,
+    DISPLAY_NAME: 'Chicago - Brown, Purple Express',
     SHORTNAME: 'Chicago',
     ADDRESS: '300 W. Chicago Avenue',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Purple Exp',
+    LINE_LIST: 'Brown, Purple Express',
     DUP_NAME: 1,
     LAT_1: 41.89681,
     LONG: -87.635924,
   },
   {
     STATION_ID: 1410,
+    DISPLAY_NAME: 'Chicago - Blue',
     SHORTNAME: 'Chicago',
     ADDRESS: '800 N. Milwaukee Avenue',
     CITY: 'Chicago',
@@ -393,6 +432,7 @@ export const station_list = [
   },
   {
     STATION_ID: 970,
+    DISPLAY_NAME: 'Cicero - Blue',
     SHORTNAME: 'Cicero',
     ADDRESS: '720 S. Cicero Avenue',
     CITY: 'Chicago',
@@ -403,6 +443,7 @@ export const station_list = [
   },
   {
     STATION_ID: 480,
+    DISPLAY_NAME: 'Cicero - Green',
     SHORTNAME: 'Cicero',
     ADDRESS: '4800 W. Lake Street',
     CITY: 'Chicago',
@@ -413,6 +454,7 @@ export const station_list = [
   },
   {
     STATION_ID: 420,
+    DISPLAY_NAME: 'Cicero - Pink',
     SHORTNAME: 'Cicero',
     ADDRESS: '2133 S. 48th Court',
     CITY: 'Cicero',
@@ -423,6 +465,7 @@ export const station_list = [
   },
   {
     STATION_ID: 630,
+    DISPLAY_NAME: 'Clark/Division - Red',
     SHORTNAME: 'Clark/Division',
     ADDRESS: '1200 N. Clark Street',
     CITY: 'Chicago',
@@ -433,16 +476,19 @@ export const station_list = [
   },
   {
     STATION_ID: 380,
+    DISPLAY_NAME:
+      'Clark/Lake - Brown, Orange, Pink, Purple Express, Green, Blue',
     SHORTNAME: 'Clark/Lake',
     ADDRESS: '100 W. Lake',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Orange, Pink, Purple Exp, Green, Blue',
+    LINE_LIST: 'Brown, Orange, Pink, Purple Express, Green, Blue',
     DUP_NAME: 1,
     LAT_1: 41.885737,
     LONG: -87.630886,
   },
   {
     STATION_ID: 1160,
+    DISPLAY_NAME: 'Clinton - Green, Pink',
     SHORTNAME: 'Clinton',
     ADDRESS: '540 W. Lake Street',
     CITY: 'Chicago',
@@ -453,6 +499,7 @@ export const station_list = [
   },
   {
     STATION_ID: 430,
+    DISPLAY_NAME: 'Clinton - Blue',
     SHORTNAME: 'Clinton',
     ADDRESS: '426 S. Clinton Street',
     CITY: 'Chicago',
@@ -463,6 +510,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1670,
+    DISPLAY_NAME: 'Conservatory - Green',
     SHORTNAME: 'Conservatory',
     ADDRESS: '3631 W. Lake Street',
     CITY: 'Chicago',
@@ -473,6 +521,7 @@ export const station_list = [
   },
   {
     STATION_ID: 720,
+    DISPLAY_NAME: 'Cottage Grove - Green',
     SHORTNAME: 'Cottage Grove',
     ADDRESS: '800 E. 63rd Street',
     CITY: 'Chicago',
@@ -483,6 +532,7 @@ export const station_list = [
   },
   {
     STATION_ID: 230,
+    DISPLAY_NAME: 'Cumberland - Blue',
     SHORTNAME: 'Cumberland',
     ADDRESS: '5800 N. Cumberland Avenue',
     CITY: 'Chicago',
@@ -493,6 +543,7 @@ export const station_list = [
   },
   {
     STATION_ID: 90,
+    DISPLAY_NAME: 'Damen - Brown',
     SHORTNAME: 'Damen',
     ADDRESS: '4643 N. Damen Avenue',
     CITY: 'Chicago',
@@ -503,6 +554,7 @@ export const station_list = [
   },
   {
     STATION_ID: 590,
+    DISPLAY_NAME: 'Damen - Blue',
     SHORTNAME: 'Damen',
     ADDRESS: '1558 N. Damen Avenue',
     CITY: 'Chicago',
@@ -513,6 +565,7 @@ export const station_list = [
   },
   {
     STATION_ID: 210,
+    DISPLAY_NAME: 'Damen - Pink',
     SHORTNAME: 'Damen',
     ADDRESS: '2010 S. Damen Avenue',
     CITY: 'Chicago',
@@ -523,6 +576,7 @@ export const station_list = [
   },
   {
     STATION_ID: 50,
+    DISPLAY_NAME: 'Davis - Purple',
     SHORTNAME: 'Davis',
     ADDRESS: '1612 N. Benson Avenue',
     CITY: 'Chicago',
@@ -533,6 +587,7 @@ export const station_list = [
   },
   {
     STATION_ID: 690,
+    DISPLAY_NAME: 'Dempster - Purple',
     SHORTNAME: 'Dempster',
     ADDRESS: '1316 N. Sherman Avenue',
     CITY: 'Evanston',
@@ -543,6 +598,7 @@ export const station_list = [
   },
   {
     STATION_ID: 140,
+    DISPLAY_NAME: 'Dempster-Skokie - Yellow',
     SHORTNAME: 'Dempster-Skokie',
     ADDRESS: '5001 W. Dempster Street',
     CITY: 'Chicago',
@@ -553,16 +609,18 @@ export const station_list = [
   },
   {
     STATION_ID: 530,
+    DISPLAY_NAME: 'Diversey - Brown, Purple Express',
     SHORTNAME: 'Diversey',
     ADDRESS: '940 W. Diversey Avenue',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Purple Exp',
+    LINE_LIST: 'Brown, Purple Express',
     DUP_NAME: 0,
     LAT_1: 41.932732,
     LONG: -87.653131,
   },
   {
     STATION_ID: 320,
+    DISPLAY_NAME: 'Division - Blue',
     SHORTNAME: 'Division',
     ADDRESS: '1200 N. Milwaukee Avenue',
     CITY: 'Chicago',
@@ -573,6 +631,7 @@ export const station_list = [
   },
   {
     STATION_ID: 390,
+    DISPLAY_NAME: 'Forest Park - Blue',
     SHORTNAME: 'Forest Park',
     ADDRESS: '711 S. Des Plaines Avenue',
     CITY: 'Forest Park',
@@ -583,6 +642,7 @@ export const station_list = [
   },
   {
     STATION_ID: 520,
+    DISPLAY_NAME: 'Foster - Purple',
     SHORTNAME: 'Foster',
     ADDRESS: '900 W. Foster Street',
     CITY: 'Evanston',
@@ -593,6 +653,7 @@ export const station_list = [
   },
   {
     STATION_ID: 870,
+    DISPLAY_NAME: 'Francisco - Brown',
     SHORTNAME: 'Francisco',
     ADDRESS: '4648 N. Francisco Avenue',
     CITY: 'Chicago',
@@ -603,16 +664,18 @@ export const station_list = [
   },
   {
     STATION_ID: 1220,
+    DISPLAY_NAME: 'Fullerton - Red, Brown, Purple Express',
     SHORTNAME: 'Fullerton',
     ADDRESS: '943  W. Fullerton Avenue',
     CITY: 'Chicago',
-    LINE_LIST: 'Red, Brown, Purple Exp',
+    LINE_LIST: 'Red, Brown, Purple Express',
     DUP_NAME: 0,
     LAT_1: 41.925051,
     LONG: -87.652866,
   },
   {
     STATION_ID: 510,
+    DISPLAY_NAME: 'Garfield - Green',
     SHORTNAME: 'Garfield',
     ADDRESS: '320 E. Garfield Boulevard',
     CITY: 'Chicago',
@@ -623,6 +686,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1170,
+    DISPLAY_NAME: 'Garfield - Red',
     SHORTNAME: 'Garfield',
     ADDRESS: '220 W. Garfield Boulevard',
     CITY: 'Chicago',
@@ -633,6 +697,7 @@ export const station_list = [
   },
   {
     STATION_ID: 490,
+    DISPLAY_NAME: 'Grand - Blue',
     SHORTNAME: 'Grand',
     ADDRESS: '502 N. Milwaukee Avenue',
     CITY: 'Chicago',
@@ -643,6 +708,7 @@ export const station_list = [
   },
   {
     STATION_ID: 330,
+    DISPLAY_NAME: 'Grand - Red',
     SHORTNAME: 'Grand',
     ADDRESS: '521 N. State Street',
     CITY: 'Chicago',
@@ -653,6 +719,7 @@ export const station_list = [
   },
   {
     STATION_ID: 760,
+    DISPLAY_NAME: 'Granville - Red',
     SHORTNAME: 'Granville',
     ADDRESS: '1119 W. Granville Avenue',
     CITY: 'Chicago',
@@ -663,6 +730,7 @@ export const station_list = [
   },
   {
     STATION_ID: 940,
+    DISPLAY_NAME: 'Halsted - Green',
     SHORTNAME: 'Halsted',
     ADDRESS: '6321 S. Halsted Street',
     CITY: 'Chicago',
@@ -673,6 +741,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1130,
+    DISPLAY_NAME: 'Halsted - Orange',
     SHORTNAME: 'Halsted',
     ADDRESS: '2520 S. Archer Avenue',
     CITY: 'Chicago',
@@ -683,6 +752,7 @@ export const station_list = [
   },
   {
     STATION_ID: 980,
+    DISPLAY_NAME: 'Harlem - Blue (Congress)',
     SHORTNAME: 'Harlem',
     ADDRESS: '701 S. Harlem Avenue',
     CITY: 'Forest Park',
@@ -693,6 +763,7 @@ export const station_list = [
   },
   {
     STATION_ID: 750,
+    DISPLAY_NAME: "Harlem - Harlem (O'Hare)",
     SHORTNAME: 'Harlem',
     ADDRESS: '5550 N. Harlem Avenue',
     CITY: 'Chicago',
@@ -703,6 +774,7 @@ export const station_list = [
   },
   {
     STATION_ID: 20,
+    DISPLAY_NAME: 'Harlem/Lake - Green',
     SHORTNAME: 'Harlem/Lake',
     ADDRESS: '1 S. Harlem Avenue',
     CITY: 'Forest Park',
@@ -713,6 +785,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1490,
+    DISPLAY_NAME: 'Harrison - Red',
     SHORTNAME: 'Harrison',
     ADDRESS: '608 S. State Street',
     CITY: 'Chicago',
@@ -723,6 +796,7 @@ export const station_list = [
   },
   {
     STATION_ID: 900,
+    DISPLAY_NAME: 'Howard - Red, Yellow, Purple',
     SHORTNAME: 'Howard',
     ADDRESS: '1649 W. Howard Street',
     CITY: 'Chicago',
@@ -733,6 +807,7 @@ export const station_list = [
   },
   {
     STATION_ID: 810,
+    DISPLAY_NAME: 'Illinois Medical District - Blue',
     SHORTNAME: 'Illinois Medical District',
     ADDRESS: '430 S. Damen Avenue',
     CITY: 'Chicago',
@@ -743,6 +818,7 @@ export const station_list = [
   },
   {
     STATION_ID: 300,
+    DISPLAY_NAME: 'Indiana - Green',
     SHORTNAME: 'Indiana',
     ADDRESS: '4003 S. Indiana Avenue',
     CITY: 'Chicago',
@@ -753,6 +829,7 @@ export const station_list = [
   },
   {
     STATION_ID: 550,
+    DISPLAY_NAME: 'Irving Park - Blue',
     SHORTNAME: 'Irving Park',
     ADDRESS: '4131 W. Irving Park Road',
     CITY: 'Chicago',
@@ -763,6 +840,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1460,
+    DISPLAY_NAME: 'Irving Park - Brown',
     SHORTNAME: 'Irving Park',
     ADDRESS: '1816 W. Irving Park Dr',
     CITY: 'Chicago',
@@ -773,6 +851,7 @@ export const station_list = [
   },
   {
     STATION_ID: 70,
+    DISPLAY_NAME: 'Jackson - Blue',
     SHORTNAME: 'Jackson',
     ADDRESS: '328 S. Dearborn',
     CITY: 'Chicago',
@@ -783,6 +862,7 @@ export const station_list = [
   },
   {
     STATION_ID: 560,
+    DISPLAY_NAME: 'Jackson - Red',
     SHORTNAME: 'Jackson',
     ADDRESS: '230 S. State',
     CITY: 'Chicago',
@@ -793,6 +873,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1190,
+    DISPLAY_NAME: 'Jarvis - Red',
     SHORTNAME: 'Jarvis',
     ADDRESS: '1523 W. Jarvis Street',
     CITY: 'Chicago',
@@ -803,6 +884,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1280,
+    DISPLAY_NAME: 'Jefferson Park - Blue',
     SHORTNAME: 'Jefferson Park',
     ADDRESS: '4917 N. Milwaukee Avenue',
     CITY: 'Chicago',
@@ -813,6 +895,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1040,
+    DISPLAY_NAME: 'Kedzie - Pink',
     SHORTNAME: 'Kedzie',
     ADDRESS: '1944 S. Kedzie Avenue',
     CITY: 'Chicago',
@@ -823,6 +906,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1180,
+    DISPLAY_NAME: 'Kedzie - Brown',
     SHORTNAME: 'Kedzie',
     ADDRESS: '4648 N. Kedzie Avenue',
     CITY: 'Chicago',
@@ -833,6 +917,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1070,
+    DISPLAY_NAME: 'Kedzie - Green',
     SHORTNAME: 'Kedzie',
     ADDRESS: '3200 W. Lake Street',
     CITY: 'Chicago',
@@ -843,6 +928,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1150,
+    DISPLAY_NAME: 'Kedzie - Orange',
     SHORTNAME: 'Kedzie',
     ADDRESS: '4900 S. Kedzie Avenue',
     CITY: 'Chicago',
@@ -853,6 +939,7 @@ export const station_list = [
   },
   {
     STATION_ID: 250,
+    DISPLAY_NAME: 'Kedzie-Homan - Blue',
     SHORTNAME: 'Kedzie-Homan',
     ADDRESS: '530 S. Kedzie Avenue',
     CITY: 'Chicago',
@@ -863,6 +950,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1290,
+    DISPLAY_NAME: 'Kimball - Brown',
     SHORTNAME: 'Kimball',
     ADDRESS: '4755 N. Kimball Avenue',
     CITY: 'Chicago',
@@ -873,6 +961,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1140,
+    DISPLAY_NAME: 'King Drive - Green',
     SHORTNAME: 'King Drive',
     ADDRESS: '400 E. 63rd Street',
     CITY: 'Chicago',
@@ -883,6 +972,7 @@ export const station_list = [
   },
   {
     STATION_ID: 600,
+    DISPLAY_NAME: 'Kostner - Pink',
     SHORTNAME: 'Kostner',
     ADDRESS: '2019 S. Kostner Avenue',
     CITY: 'Chicago',
@@ -893,6 +983,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1660,
+    DISPLAY_NAME: 'Lake - Red',
     SHORTNAME: 'Lake',
     ADDRESS: '188 N. State',
     CITY: 'Chicago',
@@ -903,6 +994,7 @@ export const station_list = [
   },
   {
     STATION_ID: 700,
+    DISPLAY_NAME: 'Laramie - Green',
     SHORTNAME: 'Laramie',
     ADDRESS: '5148 W. Lake Street',
     CITY: 'Chicago',
@@ -913,6 +1005,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1340,
+    DISPLAY_NAME: 'LaSalle - Blue',
     SHORTNAME: 'LaSalle',
     ADDRESS: '150 W. Congress Parkway',
     CITY: 'Chicago',
@@ -923,16 +1016,18 @@ export const station_list = [
   },
   {
     STATION_ID: 160,
+    DISPLAY_NAME: 'LaSalle/Van Buren - Brown, Orange, Pink, Purple Express',
     SHORTNAME: 'LaSalle/Van Buren',
     ADDRESS: '121 W. Van Buren Street',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Orange, Pink, Purple Exp',
+    LINE_LIST: 'Brown, Orange, Pink, Purple Express',
     DUP_NAME: 1,
     LAT_1: 41.8768,
     LONG: -87.631739,
   },
   {
     STATION_ID: 770,
+    DISPLAY_NAME: 'Lawrence - Red',
     SHORTNAME: 'Lawrence',
     ADDRESS: '1117 W. Lawrence Avenue',
     CITY: 'Chicago',
@@ -943,16 +1038,19 @@ export const station_list = [
   },
   {
     STATION_ID: 850,
+    DISPLAY_NAME:
+      'Library-State/Van Buren - Brown, Orange, Pink, Purple Express',
     SHORTNAME: 'Library-State/Van Buren',
     ADDRESS: '26 W. Van Buren Street',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Orange, Pink, Purple Exp',
+    LINE_LIST: 'Brown, Orange, Pink, Purple Express',
     DUP_NAME: 0,
     LAT_1: 41.876862,
     LONG: -87.628196,
   },
   {
     STATION_ID: 1050,
+    DISPLAY_NAME: 'Linden - Purple',
     SHORTNAME: 'Linden',
     ADDRESS: '349 W. Linden Avenue',
     CITY: 'Wilmette',
@@ -963,6 +1061,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1020,
+    DISPLAY_NAME: 'Logan Square - Blue',
     SHORTNAME: 'Logan Square',
     ADDRESS: '2620 N. Milwaukee Av',
     CITY: 'Chicago',
@@ -973,6 +1072,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1300,
+    DISPLAY_NAME: 'Loyola - Red',
     SHORTNAME: 'Loyola',
     ADDRESS: '1200 W. Loyola Avenue',
     CITY: 'Chicago',
@@ -983,6 +1083,7 @@ export const station_list = [
   },
   {
     STATION_ID: 270,
+    DISPLAY_NAME: 'Main - Purple',
     SHORTNAME: 'Main',
     ADDRESS: '836 N. Chicago Avenue',
     CITY: 'Evanston',
@@ -993,16 +1094,18 @@ export const station_list = [
   },
   {
     STATION_ID: 460,
+    DISPLAY_NAME: 'Merchandise Mart - Brown, Purple Express',
     SHORTNAME: 'Merchandise Mart',
     ADDRESS: '350 N. Wells Street',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Purple Exp',
+    LINE_LIST: 'Brown, Purple Express',
     DUP_NAME: 0,
     LAT_1: 41.888969,
     LONG: -87.633924,
   },
   {
     STATION_ID: 930,
+    DISPLAY_NAME: 'Midway - Orange',
     SHORTNAME: 'Midway',
     ADDRESS: '4612 W. 59th Street',
     CITY: 'Chicago',
@@ -1013,6 +1116,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1090,
+    DISPLAY_NAME: 'Monroe - Red',
     SHORTNAME: 'Monroe',
     ADDRESS: '26 S. State',
     CITY: 'Chicago',
@@ -1023,6 +1127,7 @@ export const station_list = [
   },
   {
     STATION_ID: 790,
+    DISPLAY_NAME: 'Monroe - Blue',
     SHORTNAME: 'Monroe',
     ADDRESS: '114 S. Dearborn',
     CITY: 'Chicago',
@@ -1033,6 +1138,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1500,
+    DISPLAY_NAME: 'Montrose - Brown',
     SHORTNAME: 'Montrose',
     ADDRESS: '1814 W. Montrose Avenue',
     CITY: 'Chicago',
@@ -1043,6 +1149,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1330,
+    DISPLAY_NAME: 'Montrose - Blue',
     SHORTNAME: 'Montrose',
     ADDRESS: '4600 W. Montrose Avenue',
     CITY: 'Chicago',
@@ -1053,6 +1160,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1510,
+    DISPLAY_NAME: 'Morgan - Green, Pink',
     SHORTNAME: 'Morgan',
     ADDRESS: '1000 W Lake St',
     CITY: 'Chicago',
@@ -1063,6 +1171,7 @@ export const station_list = [
   },
   {
     STATION_ID: 100,
+    DISPLAY_NAME: 'Morse - Red',
     SHORTNAME: 'Morse',
     ADDRESS: '1358 W. Morse Avenue',
     CITY: 'Chicago',
@@ -1073,6 +1182,7 @@ export const station_list = [
   },
   {
     STATION_ID: 650,
+    DISPLAY_NAME: 'North/Clybourn - Red',
     SHORTNAME: 'North/Clybourn',
     ADDRESS: '1599 N. Clybourn Avenue',
     CITY: 'Chicago',
@@ -1083,6 +1193,7 @@ export const station_list = [
   },
   {
     STATION_ID: 400,
+    DISPLAY_NAME: 'Noyes - Purple',
     SHORTNAME: 'Noyes',
     ADDRESS: '901 W. Noyes Street',
     CITY: 'Evanston',
@@ -1093,6 +1204,7 @@ export const station_list = [
   },
   {
     STATION_ID: 890,
+    DISPLAY_NAME: "O'Hare - Blue",
     SHORTNAME: "O'Hare",
     ADDRESS: "1000 O'Hare Drive",
     CITY: 'Chicago',
@@ -1103,6 +1215,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1350,
+    DISPLAY_NAME: 'Oak Park - Green',
     SHORTNAME: 'Oak Park',
     ADDRESS: '100 S. Oak Park Avenue',
     CITY: 'Oak Park',
@@ -1113,6 +1226,7 @@ export const station_list = [
   },
   {
     STATION_ID: 180,
+    DISPLAY_NAME: 'Oak Park - Blue',
     SHORTNAME: 'Oak Park',
     ADDRESS: '950 S. Oak Park Avenue',
     CITY: 'Oak Park',
@@ -1123,6 +1237,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1680,
+    DISPLAY_NAME: 'Oakton-Skokie - Yellow',
     SHORTNAME: 'Oakton-Skokie',
     ADDRESS: '4802 W Oakton',
     CITY: 'Skokie',
@@ -1133,6 +1248,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1310,
+    DISPLAY_NAME: 'Paulina - Brown',
     SHORTNAME: 'Paulina',
     ADDRESS: '3411 N. Paulina Street',
     CITY: 'Chicago',
@@ -1143,6 +1259,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1030,
+    DISPLAY_NAME: 'Polk - Pink',
     SHORTNAME: 'Polk',
     ADDRESS: '1713 W. Polk Street',
     CITY: 'Chicago',
@@ -1153,6 +1270,7 @@ export const station_list = [
   },
   {
     STATION_ID: 920,
+    DISPLAY_NAME: 'Pulaski - Blue',
     SHORTNAME: 'Pulaski',
     ADDRESS: '530 S. Pulaski Road',
     CITY: 'Chicago',
@@ -1163,6 +1281,7 @@ export const station_list = [
   },
   {
     STATION_ID: 30,
+    DISPLAY_NAME: 'Pulaski - Green',
     SHORTNAME: 'Pulaski',
     ADDRESS: '4000 W. Lake Street',
     CITY: 'Chicago',
@@ -1173,6 +1292,7 @@ export const station_list = [
   },
   {
     STATION_ID: 960,
+    DISPLAY_NAME: 'Pulaski - Orange',
     SHORTNAME: 'Pulaski',
     ADDRESS: '5106 S. Pulaski Road',
     CITY: 'Chicago',
@@ -1183,6 +1303,7 @@ export const station_list = [
   },
   {
     STATION_ID: 150,
+    DISPLAY_NAME: 'Pulaski - Pink',
     SHORTNAME: 'Pulaski',
     ADDRESS: '2005 S. Pulaski Road',
     CITY: 'Chicago',
@@ -1193,16 +1314,18 @@ export const station_list = [
   },
   {
     STATION_ID: 40,
+    DISPLAY_NAME: 'Quincy/Wells - Brown, Orange, Pink, Purple Express',
     SHORTNAME: 'Quincy/Wells',
     ADDRESS: '220 S. Wells Street',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Orange, Pink, Purple Exp',
+    LINE_LIST: 'Brown, Orange, Pink, Purple Express',
     DUP_NAME: 0,
     LAT_1: 41.878723,
     LONG: -87.63374,
   },
   {
     STATION_ID: 470,
+    DISPLAY_NAME: 'Racine - Blue',
     SHORTNAME: 'Racine',
     ADDRESS: '430 S. Racine Avenue',
     CITY: 'Chicago',
@@ -1213,6 +1336,7 @@ export const station_list = [
   },
   {
     STATION_ID: 610,
+    DISPLAY_NAME: 'Ridgeland - Green',
     SHORTNAME: 'Ridgeland',
     ADDRESS: '36 N. Ridgeland Avenue',
     CITY: 'Oak Park',
@@ -1223,6 +1347,7 @@ export const station_list = [
   },
   {
     STATION_ID: 1010,
+    DISPLAY_NAME: 'Rockwell - Brown',
     SHORTNAME: 'Rockwell',
     ADDRESS: '4648 N. Rockwell Street',
     CITY: 'Chicago',
@@ -1233,6 +1358,7 @@ export const station_list = [
   },
   {
     STATION_ID: 410,
+    DISPLAY_NAME: 'Roosevelt - Red, Orange, Green',
     SHORTNAME: 'Roosevelt',
     ADDRESS: '22 E. Roosevelt Road',
     CITY: 'Chicago',
@@ -1243,6 +1369,7 @@ export const station_list = [
   },
   {
     STATION_ID: 820,
+    DISPLAY_NAME: 'Rosemont - Blue',
     SHORTNAME: 'Rosemont',
     ADDRESS: '5801 N. River Road',
     CITY: 'Rosemont',
@@ -1253,16 +1380,18 @@ export const station_list = [
   },
   {
     STATION_ID: 800,
+    DISPLAY_NAME: 'Sedgwick - Brown, Purple Express',
     SHORTNAME: 'Sedgwick',
     ADDRESS: '1536 N. Sedgwick Avenue',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Purple Exp',
+    LINE_LIST: 'Brown, Purple Express',
     DUP_NAME: 0,
     LAT_1: 41.910409,
     LONG: -87.639302,
   },
   {
     STATION_ID: 80,
+    DISPLAY_NAME: 'Sheridan - Red',
     SHORTNAME: 'Sheridan',
     ADDRESS: '3940 N. Sheridan Road',
     CITY: 'Chicago',
@@ -1273,6 +1402,7 @@ export const station_list = [
   },
   {
     STATION_ID: 840,
+    DISPLAY_NAME: 'South Boulevard - Purple',
     SHORTNAME: 'South Boulevard',
     ADDRESS: '601 W. South Boulevard',
     CITY: 'Evanston',
@@ -1283,6 +1413,7 @@ export const station_list = [
   },
   {
     STATION_ID: 360,
+    DISPLAY_NAME: 'Southport - Brown',
     SHORTNAME: 'Southport',
     ADDRESS: '3411 N. Southport Avenue',
     CITY: 'Chicago',
@@ -1293,6 +1424,7 @@ export const station_list = [
   },
   {
     STATION_ID: 190,
+    DISPLAY_NAME: 'Sox-35th - Red',
     SHORTNAME: 'Sox-35th',
     ADDRESS: '142 W. 35th Street',
     CITY: 'Chicago',
@@ -1303,16 +1435,18 @@ export const station_list = [
   },
   {
     STATION_ID: 260,
+    DISPLAY_NAME: 'State/Lake - Brown, Orange, Pink, Purple Express, Green',
     SHORTNAME: 'State/Lake',
     ADDRESS: '200 N. State Street',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Orange, Pink, Purple Exp, Green',
+    LINE_LIST: 'Brown, Orange, Pink, Purple Express, Green',
     DUP_NAME: 1,
     LAT_1: 41.88574,
     LONG: -87.627835,
   },
   {
     STATION_ID: 880,
+    DISPLAY_NAME: 'Thorndale - Red',
     SHORTNAME: 'Thorndale',
     ADDRESS: '1118 W. Thorndale Avenue',
     CITY: 'Chicago',
@@ -1323,6 +1457,7 @@ export const station_list = [
   },
   {
     STATION_ID: 350,
+    DISPLAY_NAME: 'UIC-Halsted - Blue',
     SHORTNAME: 'UIC-Halsted',
     ADDRESS: '430 S. Halsted Street',
     CITY: 'Chicago',
@@ -1333,6 +1468,7 @@ export const station_list = [
   },
   {
     STATION_ID: 370,
+    DISPLAY_NAME: 'Washington - Blue',
     SHORTNAME: 'Washington',
     ADDRESS: '19 N. Dearborn',
     CITY: 'Chicago',
@@ -1343,36 +1479,41 @@ export const station_list = [
   },
   {
     STATION_ID: 1700,
+    DISPLAY_NAME:
+      'Washington/Wabash - Brown, Orange, Pink, Purple Express, Green',
     SHORTNAME: 'Washington/Wabash',
     ADDRESS: '29 N. Wabash',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Orange, Pink, Purple Exp, Green',
+    LINE_LIST: 'Brown, Orange, Pink, Purple Express, Green',
     DUP_NAME: 1,
     LAT_1: 41.88322,
     LONG: -87.626189,
   },
   {
     STATION_ID: 730,
+    DISPLAY_NAME: 'Washington/Wells - Brown, Orange, Pink, Purple Express',
     SHORTNAME: 'Washington/Wells',
     ADDRESS: '100 N. Wells Street',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Orange, Pink, Purple Exp',
+    LINE_LIST: 'Brown, Orange, Pink, Purple Express',
     DUP_NAME: 1,
     LAT_1: 41.882695,
     LONG: -87.63378,
   },
   {
     STATION_ID: 1210,
+    DISPLAY_NAME: 'Wellington - Brown, Purple Express',
     SHORTNAME: 'Wellington',
     ADDRESS: '945 W. Wellington Avenue',
     CITY: 'Chicago',
-    LINE_LIST: 'Brown, Purple Exp',
+    LINE_LIST: 'Brown, Purple Express',
     DUP_NAME: 0,
     LAT_1: 41.936033,
     LONG: -87.653266,
   },
   {
     STATION_ID: 1480,
+    DISPLAY_NAME: 'Western - Brown',
     SHORTNAME: 'Western',
     ADDRESS: '4645 N. Western Avenue',
     CITY: 'Chicago',
@@ -1383,6 +1524,7 @@ export const station_list = [
   },
   {
     STATION_ID: 670,
+    DISPLAY_NAME: "Western - Blue (O'Hare)",
     SHORTNAME: 'Western',
     ADDRESS: '1909 N. Western Avenue',
     CITY: 'Chicago',
@@ -1393,6 +1535,7 @@ export const station_list = [
   },
   {
     STATION_ID: 740,
+    DISPLAY_NAME: 'Western - Pink',
     SHORTNAME: 'Western',
     ADDRESS: '2009 S. Western Avenue',
     CITY: 'Chicago',
@@ -1403,6 +1546,7 @@ export const station_list = [
   },
   {
     STATION_ID: 220,
+    DISPLAY_NAME: 'Western - Blue (Congress)',
     SHORTNAME: 'Western',
     ADDRESS: '430 S. Western Avenue',
     CITY: 'Chicago',
@@ -1413,6 +1557,7 @@ export const station_list = [
   },
   {
     STATION_ID: 310,
+    DISPLAY_NAME: 'Western - Orange',
     SHORTNAME: 'Western',
     ADDRESS: '4901 S. Western Avenue',
     CITY: 'Chicago',
@@ -1423,6 +1568,7 @@ export const station_list = [
   },
   {
     STATION_ID: 540,
+    DISPLAY_NAME: 'Wilson - Red',
     SHORTNAME: 'Wilson',
     ADDRESS: '4920 N. Broadway Street',
     CITY: 'Chicago',

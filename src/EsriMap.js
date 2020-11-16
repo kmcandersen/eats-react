@@ -117,6 +117,7 @@ class EsriMap extends Component {
                         this.props.removeSelectedRest();
                       }
                       this.props.selectSta(feature.attributes, true);
+                      this.props.clickMapSta(true);
                     } else if (feature.layer.title === 'Restaurant Results') {
                       this.props.selectRest(feature.attributes, true);
                     } else if (feature.layer.title === 'Selected Restaurant') {

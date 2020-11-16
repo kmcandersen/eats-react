@@ -9,20 +9,29 @@ class Search extends Component {
     optionStaInfo: null,
   };
 
+  componentDidUpdate(prevProps) {
+    // when new sta selected on map, state.clickedMapSta (App) becomes true & search box is emptied of previously-searched sta
+    if (this.props.clickedMapSta && !prevProps.clickedMapSta) {
+      this.setState({ optionStaInfo: null });
+    }
+  }
+
   handleChange = (event, newValue) => {
     this.setState({ optionStaInfo: newValue }, () => {
       // newValue = array of objects given by Autocomplete options property
       this.props.selectSta(this.state.optionStaInfo);
+      this.props.clickMapSta(false);
     });
   };
+
   render() {
     return (
       <div className="Search--wrapper">
         <Autocomplete
           id="combo-box-demo"
           options={station_list}
-          getOptionLabel={option => option.SHORTNAME}
-          renderOption={option => option.SHORTNAME}
+          getOptionLabel={option => option.DISPLAY_NAME}
+          renderOption={option => option.DISPLAY_NAME}
           style={{
             width: '90%',
           }}

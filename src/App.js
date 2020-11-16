@@ -16,6 +16,8 @@ class App extends Component {
       lines: '',
       coords: [],
     },
+    //used with Search to capture dropdown selection
+    optionSta: null,
     // needed bc arr contents not directly accessible; same as selectedRest[0].station_id
     selectedRestId: 0,
     //must be arr, so cb used in setGraphics(arr)
@@ -29,6 +31,8 @@ class App extends Component {
     mapLoaded: false,
     //here, t/f has no semantic meaning; it's just a toggle to trigger an update
     zoomToStaVar: false,
+    //becomes true when a sta is selected via map (emptying Search box)
+    clickedMapSta: false,
   };
 
   componentDidMount() {
@@ -103,6 +107,10 @@ class App extends Component {
     });
   };
 
+  clickMapSta = bool => {
+    this.setState({ clickedMapSta: bool });
+  };
+
   zoomToSta = () => {
     this.setState({ zoomToStaVar: !this.state.zoomToStaVar });
   };
@@ -142,6 +150,8 @@ class App extends Component {
           <Panel
             selectSta={this.selectSta}
             selectedSta={this.state.selectedSta}
+            clickedMapSta={this.state.clickedMapSta}
+            clickMapSta={this.clickMapSta}
             selectedRestId={this.state.selectedRestId}
             selectRest={this.selectRest}
             removeSelectedRest={this.removeSelectedRest}
@@ -155,6 +165,7 @@ class App extends Component {
           <EsriMap
             {...this.state}
             selectSta={this.selectSta}
+            clickMapSta={this.clickMapSta}
             selectRest={this.selectRest}
             removeSelectedRest={this.removeSelectedRest}
             onMapLoad={this.onMapLoad}

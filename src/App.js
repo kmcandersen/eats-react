@@ -140,6 +140,7 @@ class App extends Component {
         <Header />
         <main className="Main--wrapper">
           <Panel
+            selectSta={this.selectSta}
             selectedSta={this.state.selectedSta}
             selectedRestId={this.state.selectedRestId}
             selectRest={this.selectRest}

@@ -5,9 +5,15 @@ import './Search.css';
 import { station_list } from './utils/station_list';
 
 class Search extends Component {
-  addLineName = el => {
-    let hyphenLine = `- ${el.LINE_LIST}`;
-    return `${el.SHORTNAME} ${el.DUP_NAME ? hyphenLine : ''}`;
+  state = {
+    optionStaInfo: null,
+  };
+
+  handleChange = (event, newValue) => {
+    this.setState({ optionStaInfo: newValue }, () => {
+      // newValue = array of objects given by Autocomplete options property
+      this.props.selectSta(this.state.optionStaInfo);
+    });
   };
   render() {
     return (
@@ -15,19 +21,18 @@ class Search extends Component {
         <Autocomplete
           id="combo-box-demo"
           options={station_list}
-          getOptionLabel={option => `${this.addLineName(option)}`}
-          renderOption={option => (
-            <React.Fragment>
-              <span>{this.addLineName(option)}</span>
-            </React.Fragment>
-          )}
+          getOptionLabel={option => option.SHORTNAME}
+          renderOption={option => option.SHORTNAME}
           style={{
             width: '90%',
           }}
+          onChange={this.handleChange}
+          name="optionStaInfo"
+          value={this.state.optionStaInfo}
           renderInput={params => (
             <TextField
               {...params}
-              label="Enter station name"
+              label="Enter or select station name"
               variant="outlined"
             />
           )}

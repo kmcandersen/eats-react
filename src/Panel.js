@@ -10,6 +10,7 @@ import parse from 'html-react-parser';
 class Panel extends Component {
   render() {
     const {
+      selectSta,
       selectedSta,
       selectedRestId,
       items,
@@ -31,7 +32,7 @@ class Panel extends Component {
     return (
       <Fragment>
         <div className="Panel--wrapper">
-          <Search />
+          <Search selectSta={selectSta} />
 
           {mapLoaded && (
             <div className="Results--wrapper">

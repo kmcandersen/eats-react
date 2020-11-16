@@ -18,9 +18,7 @@ class Search extends Component {
           getOptionLabel={option => `${this.addLineName(option)}`}
           renderOption={option => (
             <React.Fragment>
-              <span className="Search--options">
-                {this.addLineName(option)}
-              </span>
+              <span>{this.addLineName(option)}</span>
             </React.Fragment>
           )}
           style={{
@@ -35,23 +33,6 @@ class Search extends Component {
           )}
         />
       </div>
-      //   <div className={`input-footer ${!this.props.results.length && "hidden"}`}></div>
-      // <div className="Search--wrapper panel modifier-class">
-      //   <form>
-      //     <label>
-      //       Search by station name
-      //       <input
-      //         type="text"
-      //         placeholder="enter a station name"
-      //         className="modifier-class input-search"
-      //       />
-      //       {/* input-error class */}
-      //       {/* <div class="input-error-message is-active">
-      //         No results--please try again
-      //       </div> */}
-      //     </label>
-      //   </form>
-      // </div>
     );
   }
 }

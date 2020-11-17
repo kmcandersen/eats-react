@@ -579,7 +579,7 @@ export const station_list = [
     DISPLAY_NAME: 'Davis - Purple',
     SHORTNAME: 'Davis',
     ADDRESS: '1612 N. Benson Avenue',
-    CITY: 'Chicago',
+    CITY: 'Evanston',
     LINE_LIST: 'Purple',
     DUP_NAME: 0,
     LAT_1: 42.04771,

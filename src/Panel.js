@@ -14,11 +14,9 @@ class Panel extends Component {
       selectedSta,
       clickMapSta,
       clickedMapSta,
-      // optionSta,
-      // selectOptionSta,
       selectedRestId,
       items,
-      mapLoaded,
+      // mapLoaded,
       selectRest,
       removeSelectedRest,
       zoomToSta,
@@ -33,56 +31,59 @@ class Panel extends Component {
 
     let lineQty = selectedSta.lines.split(', ').length > 1 ? 'lines' : 'line';
 
+    let displayAddress =
+      selectedSta.city !== 'Chicago'
+        ? `${selectedSta.address}, ${selectedSta.city}`
+        : `${selectedSta.address}`;
+
     return (
       <Fragment>
         <div className="Panel--wrapper">
           <Search
             selectSta={selectSta}
-            clickMapSta={clickMapSta}
             clickedMapSta={clickedMapSta}
+            clickMapSta={clickMapSta}
           />
 
-          {mapLoaded && (
-            <div className="Results--wrapper">
-              <div className="Station--wrapper">
-                <div className="panel modifier-class">
-                  <div className="Station--header">
-                    <div className="Station--name">
-                      <h4>{selectedSta.shortname}</h4>
-                    </div>
-                    <div className="Station--squares-wrapper">
-                      <a
-                        className="tooltip tooltip-top modifier-class"
-                        aria-label={`${selectedSta.lines} ${lineQty}`}
-                      >
-                        <div className="Station--squares">
-                          {selectedSta.lines.length && parse(colorSquaresStr)}
-                        </div>
-                      </a>
-                    </div>
+          {/* {mapLoaded && ( */}
+          <div className="Results--wrapper">
+            <div className="Station--wrapper">
+              <div className="panel modifier-class">
+                <div className="Station--header">
+                  <div className="Station--name">
+                    <h4>{selectedSta.shortname}</h4>
                   </div>
-                  <div className="Station--details">
-                    <p className="trailer-0 text-light">
-                      {selectedSta.address}
-                    </p>
-                    <div
-                      className="Station--details-zoom esri-icon-zoom-in-magnifying-glass text-light"
-                      onClick={zoomToSta}
-                    ></div>
+                  <div className="Station--squares-wrapper">
+                    <a
+                      className="tooltip tooltip-top modifier-class"
+                      aria-label={`${selectedSta.lines} ${lineQty}`}
+                    >
+                      <div className="Station--squares">
+                        {selectedSta.lines.length && parse(colorSquaresStr)}
+                      </div>
+                    </a>
                   </div>
                 </div>
+                <div className="Station--details">
+                  <p className="trailer-0 text-light">{displayAddress}</p>
+                  <div
+                    className="Station--details-zoom esri-icon-zoom-in-magnifying-glass text-light"
+                    onClick={zoomToSta}
+                  ></div>
+                </div>
               </div>
-              {items && (
-                <List
-                  items={items}
-                  selectedRestId={selectedRestId}
-                  selectRest={selectRest}
-                  removeSelectedRest={removeSelectedRest}
-                  restSelectedOnMap={restSelectedOnMap}
-                />
-              )}
             </div>
-          )}
+            {items && (
+              <List
+                items={items}
+                selectedRestId={selectedRestId}
+                selectRest={selectRest}
+                removeSelectedRest={removeSelectedRest}
+                restSelectedOnMap={restSelectedOnMap}
+              />
+            )}
+          </div>
+          {/* )} */}
         </div>
       </Fragment>
     );

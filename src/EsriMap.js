@@ -87,6 +87,7 @@ class EsriMap extends Component {
             .whenLayerView(staLayer)
             .then(layerView => {
               console.log('LAYERVIEW', layerView);
+              this.props.onMapLoad(true);
 
               const restLayer = this._view.map.layers.find(layer => {
                 return layer.title === 'Restaurant Results';
@@ -104,8 +105,6 @@ class EsriMap extends Component {
                   highlight = layerView.highlight(result.features);
                 });
               }
-
-              this.props.onMapLoad(true);
 
               // mapClickHandler/hitTest takes clicks & changes appropriate state. Other CDU conditions modify layers accordingly
               let mapClickHandler = event => {
@@ -149,7 +148,9 @@ class EsriMap extends Component {
               let resultsLayer = loadDataLayer(graphicsArr);
               return resultsLayer;
             })
-            .then(resultsLayer => this._view.map.add(resultsLayer))
+            .then(resultsLayer => {
+              this._view.map.add(resultsLayer);
+            })
             .then(() =>
               this._view.goTo({ center: this.props.selectedSta.coords })
             )
@@ -227,14 +228,14 @@ class EsriMap extends Component {
               if (highlight) {
                 highlight.remove();
               }
-              //     // highlight point of selected station (initial selection or when selected via Search, NOT map click--that's in hitTest)
+              // highlight point of selected station (initial selection or when selected via Search, NOT map click--that's in hitTest)
               let query = staLayer.createQuery();
               let queryString = `STATION_ID = ${this.props.selectedSta.station_id}`;
               query.where = queryString;
               staLayer.queryFeatures(query).then(result => {
                 highlight = layerView.highlight(result.features);
               });
-              //     //whenLayerView--staLayer
+              //whenLayerView--staLayer
             })
             .catch(err => {
               console.log(err);
@@ -273,7 +274,9 @@ class EsriMap extends Component {
     return (
       <div className="Map--wrapper" style={{ height: mapHeight, width: '65%' }}>
         <div className="Map--map" ref={this.mapDiv}>
-          {/* <div className={`${!this.props.mapLoaded && "loading-spinner"}`}></div> */}
+          <div
+            className={`${!this.props.mapLoaded && 'loading-spinner'}`}
+          ></div>
         </div>
       </div>
     );

@@ -13,20 +13,19 @@ class App extends Component {
       station_id: 0,
       shortname: '',
       address: '',
+      city: '',
       lines: '',
       coords: [],
     },
-    //used with Search to capture dropdown selection
-    optionSta: null,
     // needed bc arr contents not directly accessible; same as selectedRest[0].station_id
     selectedRestId: 0,
     //must be arr, so cb used in setGraphics(arr)
     selectedRest: [],
-    //flag if ListItem should scrollIntoView
+    //if true, ListItem should scrollIntoView
     restSelectedOnMap: false,
     searchResults: [],
     bookmarks: [],
-    // searchResults or bookmarks
+    // becomes searchResults or bookmarks
     data: 'none',
     mapLoaded: false,
     //here, t/f has no semantic meaning; it's just a toggle to trigger an update
@@ -44,6 +43,7 @@ class App extends Component {
       station_id: 410,
       shortname: 'Roosevelt',
       address: '22 E. Roosevelt Road',
+      city: 'Chicago',
       lines: 'Red, Green, Orange',
       coords: [-87.62659, 41.867405],
     };

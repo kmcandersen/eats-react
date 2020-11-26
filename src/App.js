@@ -35,10 +35,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // const url =
-    //   'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=41.867405&longitude=-87.62659&radius=804&limit=10';
-    // const url = `https://cors-anywhere.herokuapp.com/http://gafinal.herokuapp.com/?term=restaurant&latitude=41.867405&longitude=-87.62659&radius=804&limit=10`;
-
     const selectedStaInfo = {
       station_id: 410,
       shortname: 'Roosevelt',
@@ -63,28 +59,27 @@ class App extends Component {
       data: 'none',
     });
 
-    // using heroku url = cors error here
     const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${latitude}&longitude=${longitude}&radius=804&limit=10`;
+    // const url = `https://cors-anywhere.herokuapp.com/http://gafinal.herokuapp.com/?term=restaurant&latitude=${latitude}&longitude=${longitude}&radius=804&limit=10`;
 
-    await axios
-      .get(url, {
+    try {
+      let res = await axios.get(url, {
         headers: {
           Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
           'Content-Type': 'application/json',
         },
-      })
-      .then(res => {
-        if (res.data.businesses && res.data.businesses[0].categories) {
-          let searchResults = createFeatureArr(res.data.businesses);
-          this.setState({
-            searchResults: searchResults,
-            data: 'searchResults',
-          });
-        }
-      })
-      .catch(err => {
-        console.log(err);
       });
+
+      if (res.data.businesses && res.data.businesses[0].categories) {
+        let searchResults = createFeatureArr(res.data.businesses);
+        this.setState({
+          searchResults: searchResults,
+          data: 'searchResults',
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   selectSta = selectedStaAllInfo => {

@@ -118,10 +118,8 @@ class EsriMap extends Component {
           //end clickHandler
         };
         mapClickListener = this._view.on('immediate-click', mapClickHandler);
-
         this._view.whenLayerView(staLayer).then(layerView => {
           this.props.onMapLoad(true);
-
           let query = staLayer.createQuery();
           let queryString = `STATION_ID = ${this.props.selectedSta.station_id}`;
           query.where = queryString;

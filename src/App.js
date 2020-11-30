@@ -69,7 +69,6 @@ class App extends Component {
           'Content-Type': 'application/json',
         },
       });
-
       if (res.data.businesses && res.data.businesses[0].categories) {
         let searchResults = createFeatureArr(res.data.businesses);
         this.setState({

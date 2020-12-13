@@ -70,10 +70,8 @@ class EsriMap extends Component {
   componentDidUpdate(prevProps) {
     // if (this.props.data === 'searchResults' && prevProps.data === 'none') {
     if (this.props.searchResults !== prevProps.searchResults) {
-      console.log('this.props.data change', this.props.searchResults);
       setTimeout(() => {
         if (this._view) {
-          console.log('INSIDE THIS.VIEW');
           //so click listeners don't accumulate with ea Update & run multiple times
           if (mapClickListener) {
             mapClickListener.remove();
@@ -123,7 +121,6 @@ class EsriMap extends Component {
           };
           mapClickListener = this._view.on('immediate-click', mapClickHandler);
           this._view.whenLayerView(staLayer).then(layerView => {
-            this.props.onMapLoad(true);
             let query = staLayer.createQuery();
             let queryString = `STATION_ID = ${this.props.selectedSta.station_id}`;
             query.where = queryString;
@@ -141,13 +138,12 @@ class EsriMap extends Component {
 
             setGraphics(this.props.searchResults)
               .then(graphicsArr => {
-                console.log('INSIDE SETGRAPHICS', this.props.searchResults);
                 let resultsLayer = loadDataLayer(graphicsArr);
                 return resultsLayer;
               })
               .then(resultsLayer => {
-                console.log('RESULTS LAYER GOTN', resultsLayer);
                 this._view.map.add(resultsLayer);
+                this.props.onMapLoad(true);
               })
               .then(() =>
                 this._view.goTo({ center: this.props.selectedSta.coords })
@@ -214,17 +210,7 @@ class EsriMap extends Component {
     });
   };
 
-  // **WHAT does this do?? when does EsriMap unmount?
-  // componentWillUnmount() {
-  //   console.log('COMP WILL UNMOUNT');
-  //   if (this._view) {
-  //     this._view.container = null;
-  //     delete this._view;
-  //   }
-  // }
-
   render() {
-    console.log('MAP RENDER');
     const { mapHeight } = this.state;
     return (
       <div className="Map--wrapper" style={{ height: mapHeight, width: '65%' }}>

@@ -41,30 +41,12 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // const selectedStaInfo = {
-    //   station_id: 410,
-    //   shortname: 'Roosevelt',
-    //   address: '22 E. Roosevelt Road',
-    //   city: 'Chicago',
-    //   lines: 'Red, Green, Orange',
-    //   coords: [-87.62659, 41.867405],
-    // };
-    // this.setState({
-    //   selectedSta: selectedStaInfo,
-    // });
-
-    // let latitude = selectedStaInfo.coords[1];
-    // let longitude = selectedStaInfo.coords[0];
-
     let latitude = this.state.selectedSta.coords[1];
     let longitude = this.state.selectedSta.coords[0];
-    console.log('APP.JS CDM');
     this.getRestData(latitude, longitude);
   }
 
   getRestData = async (latitude, longitude) => {
-    console.log('INSIDE GRD');
-    //this.onMapLoad(false);
     // this.setState({
     //   data: 'none',
     // });
@@ -84,7 +66,7 @@ class App extends Component {
         this.setState({
           searchResults: searchResults,
           // data: 'searchResults',
-          mapLoaded: true,
+          mapLoaded: false,
         });
       }
     } catch (err) {
@@ -148,7 +130,6 @@ class App extends Component {
   };
 
   render() {
-    console.log('APP.JS RENDER');
     return (
       <div>
         <Header />

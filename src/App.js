@@ -10,12 +10,6 @@ class App extends Component {
   state = {
     selectedStaId: 0,
     selectedSta: {
-      // station_id: 0,
-      // shortname: '',
-      // address: '',
-      // city: '',
-      // lines: '',
-      // coords: [],
       station_id: 410,
       shortname: 'Roosevelt',
       address: '22 E. Roosevelt Road',
@@ -47,6 +41,7 @@ class App extends Component {
   }
 
   getRestData = async (latitude, longitude) => {
+    this.onMapLoad(false);
     // this.setState({
     //   data: 'none',
     // });
@@ -66,7 +61,6 @@ class App extends Component {
         this.setState({
           searchResults: searchResults,
           // data: 'searchResults',
-          mapLoaded: false,
         });
       }
     } catch (err) {

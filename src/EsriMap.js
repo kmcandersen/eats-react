@@ -68,7 +68,9 @@ class EsriMap extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.data === 'searchResults' && prevProps.data === 'none') {
+    // if (this.props.data === 'searchResults' && prevProps.data === 'none') {
+    if (this.props.searchResults !== prevProps.searchResults) {
+      console.log('this.props.data change');
       if (this._view) {
         //so click listeners don't accumulate with ea Update & run multiple times
         if (mapClickListener) {
@@ -141,6 +143,7 @@ class EsriMap extends Component {
               return resultsLayer;
             })
             .then(resultsLayer => {
+              console.log('RESULTS LAYER GOTN');
               this._view.map.add(resultsLayer);
             })
             .then(() =>
@@ -206,14 +209,17 @@ class EsriMap extends Component {
     });
   };
 
-  componentWillUnmount() {
-    if (this._view) {
-      this._view.container = null;
-      delete this._view;
-    }
-  }
+  // **WHAT does this do?? when does EsriMap unmount?
+  // componentWillUnmount() {
+  //   console.log('COMP WILL UNMOUNT');
+  //   if (this._view) {
+  //     this._view.container = null;
+  //     delete this._view;
+  //   }
+  // }
 
   render() {
+    console.log('MAP RENDER');
     const { mapHeight } = this.state;
     return (
       <div className="Map--wrapper" style={{ height: mapHeight, width: '65%' }}>

@@ -10,12 +10,18 @@ class App extends Component {
   state = {
     selectedStaId: 0,
     selectedSta: {
-      station_id: 0,
-      shortname: '',
-      address: '',
-      city: '',
-      lines: '',
-      coords: [],
+      // station_id: 0,
+      // shortname: '',
+      // address: '',
+      // city: '',
+      // lines: '',
+      // coords: [],
+      station_id: 410,
+      shortname: 'Roosevelt',
+      address: '22 E. Roosevelt Road',
+      city: 'Chicago',
+      lines: 'Red, Green, Orange',
+      coords: [-87.62659, 41.867405],
     },
     // needed bc arr contents not directly accessible; same as selectedRest[0].station_id
     selectedRestId: 0,
@@ -35,29 +41,33 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const selectedStaInfo = {
-      station_id: 410,
-      shortname: 'Roosevelt',
-      address: '22 E. Roosevelt Road',
-      city: 'Chicago',
-      lines: 'Red, Green, Orange',
-      coords: [-87.62659, 41.867405],
-    };
-    this.setState({
-      selectedSta: selectedStaInfo,
-    });
+    // const selectedStaInfo = {
+    //   station_id: 410,
+    //   shortname: 'Roosevelt',
+    //   address: '22 E. Roosevelt Road',
+    //   city: 'Chicago',
+    //   lines: 'Red, Green, Orange',
+    //   coords: [-87.62659, 41.867405],
+    // };
+    // this.setState({
+    //   selectedSta: selectedStaInfo,
+    // });
 
-    let latitude = selectedStaInfo.coords[1];
-    let longitude = selectedStaInfo.coords[0];
+    // let latitude = selectedStaInfo.coords[1];
+    // let longitude = selectedStaInfo.coords[0];
 
+    let latitude = this.state.selectedSta.coords[1];
+    let longitude = this.state.selectedSta.coords[0];
+    console.log('APP.JS CDM');
     this.getRestData(latitude, longitude);
   }
 
   getRestData = async (latitude, longitude) => {
-    this.onMapLoad(false);
-    this.setState({
-      data: 'none',
-    });
+    console.log('INSIDE GRD');
+    //this.onMapLoad(false);
+    // this.setState({
+    //   data: 'none',
+    // });
 
     const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${latitude}&longitude=${longitude}&radius=804&limit=10`;
     // const url = `https://cors-anywhere.herokuapp.com/http://gafinal.herokuapp.com/?term=restaurant&latitude=${latitude}&longitude=${longitude}&radius=804&limit=10`;
@@ -73,7 +83,8 @@ class App extends Component {
         let searchResults = createFeatureArr(res.data.businesses);
         this.setState({
           searchResults: searchResults,
-          data: 'searchResults',
+          // data: 'searchResults',
+          mapLoaded: true,
         });
       }
     } catch (err) {
@@ -137,6 +148,7 @@ class App extends Component {
   };
 
   render() {
+    console.log('APP.JS RENDER');
     return (
       <div>
         <Header />
@@ -149,9 +161,10 @@ class App extends Component {
             selectedRestId={this.state.selectedRestId}
             selectRest={this.selectRest}
             removeSelectedRest={this.removeSelectedRest}
-            items={
-              this.state.data === 'searchResults' && this.state.searchResults
-            }
+            // items={
+            //   this.state.data === 'searchResults' && this.state.searchResults
+            // }
+            items={this.state.searchResults}
             mapLoaded={this.state.mapLoaded}
             zoomToSta={this.zoomToSta}
             restSelectedOnMap={this.state.restSelectedOnMap}

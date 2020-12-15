@@ -8,11 +8,9 @@ import {
 } from './utils/layer';
 import { setGraphics } from './utils/graphics';
 import './EsriMap.css';
-//import yellowIcon from './img/map-pin-yellow.svg';
 
 let highlight;
 let mapClickListener;
-//let staLayer;
 
 class EsriMap extends Component {
   constructor(props) {
@@ -40,7 +38,7 @@ class EsriMap extends Component {
       .then(() => {
         this._view.map.add(loadLinesLayer());
       })
-      // adjusts station symbol size at scale breakpoints **effect on performance?
+      // adjusts station symbol size at scale breakpoints
       .then(() => {
         this._view.watch('scale', newValue => {
           let staLayer = this._view.map.layers.find(layer => {
@@ -68,92 +66,96 @@ class EsriMap extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.data === 'searchResults' && prevProps.data === 'none') {
-      if (this._view) {
-        //so click listeners don't accumulate with ea Update & run multiple times
-        if (mapClickListener) {
-          mapClickListener.remove();
-        }
 
-        // .find layers is flexible but doesn't work here 100%
-        const staLayer = this._view.map.layers.getItemAt(1);
+    if (this.props.searchResults !== prevProps.searchResults) {
+      setTimeout(() => {
+        if (this._view) {
+          //so click listeners don't accumulate with ea Update & run multiple times
+          if (mapClickListener) {
+            mapClickListener.remove();
+          }
 
-        const restLayer = this._view.map.layers.find(layer => {
-          return layer.title === 'Restaurant Results';
-        });
-        if (restLayer && this.props.selectedStaId) {
-          this._view.map.remove(restLayer);
-        }
-        const selectedRestLayer = this._view.map.layers.find(layer => {
-          return layer.title === 'Selected Restaurant';
-        });
-        if (selectedRestLayer) {
-          this._view.map.remove(selectedRestLayer);
-        }
+          // .find layers is flexible but doesn't work here 100%
+          const staLayer = this._view.map.layers.getItemAt(1);
 
-        let mapClickHandler = event => {
-          this._view.hitTest(event).then(response => {
-            if (response.results.length) {
-              const feature = response.results[0].graphic;
-              if (feature.layer.title === 'CTA Stations Details') {
+          const restLayer = this._view.map.layers.find(layer => {
+            return layer.title === 'Restaurant Results';
+          });
+          if (restLayer && this.props.selectedStaId) {
+            this._view.map.remove(restLayer);
+          }
+          const selectedRestLayer = this._view.map.layers.find(layer => {
+            return layer.title === 'Selected Restaurant';
+          });
+          if (selectedRestLayer) {
+            this._view.map.remove(selectedRestLayer);
+          }
+
+          let mapClickHandler = event => {
+            this._view.hitTest(event).then(response => {
+              if (response.results.length) {
+                const feature = response.results[0].graphic;
+                if (feature.layer.title === 'CTA Stations Details') {
+                  if (this.props.selectedRest.length) {
+                    this.props.removeSelectedRest();
+                  }
+                  this.props.selectSta(feature.attributes);
+                  this.props.clickMapSta(true);
+                } else if (feature.layer.title === 'Restaurant Results') {
+                  this.props.selectRest(feature.attributes, true);
+                } else if (feature.layer.title === 'Selected Restaurant') {
+                  // if selected rest pin clicked, it sb "deselected"; this empties info, & the change triggers the yellow pin layer's removal below
+                  this.props.removeSelectedRest();
+                }
+              } else if (!response.results.length) {
+                //so the selected rest pin layer is removed (below)
                 if (this.props.selectedRest.length) {
                   this.props.removeSelectedRest();
                 }
-                this.props.selectSta(feature.attributes, true);
-                this.props.clickMapSta(true);
-              } else if (feature.layer.title === 'Restaurant Results') {
-                this.props.selectRest(feature.attributes, true);
-              } else if (feature.layer.title === 'Selected Restaurant') {
-                // if selected rest pin clicked, it sb "deselected"; this empties info, & the change triggers the yellow pin layer's removal below
-                this.props.removeSelectedRest();
               }
-            } else if (!response.results.length) {
-              //so the selected rest pin layer is removed (below)
-              if (this.props.selectedRest.length) {
-                this.props.removeSelectedRest();
-              }
-            }
-            //end hitTest
+              //end hitTest
+            });
+            //end clickHandler
+          };
+          mapClickListener = this._view.on('immediate-click', mapClickHandler);
+          this._view.whenLayerView(staLayer).then(layerView => {
+            let query = staLayer.createQuery();
+            let queryString = `STATION_ID = ${this.props.selectedSta.station_id}`;
+            query.where = queryString;
+            staLayer
+              .queryFeatures(query)
+              .then(result => {
+                if (highlight) {
+                  highlight.remove();
+                }
+                highlight = layerView.highlight(result.features);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+
+            setGraphics(this.props.searchResults)
+              .then(graphicsArr => {
+                let resultsLayer = loadDataLayer(graphicsArr);
+                return resultsLayer;
+              })
+              .then(resultsLayer => {
+                this._view.map.add(resultsLayer);
+                this.props.onMapLoad(true);
+              })
+              .then(() =>
+                this._view.goTo({ center: this.props.selectedSta.coords })
+              )
+              .catch(err => {
+                console.log(err);
+              });
+
+            //end whenLayerView
           });
-          //end clickHandler
-        };
-        mapClickListener = this._view.on('immediate-click', mapClickHandler);
-        this._view.whenLayerView(staLayer).then(layerView => {
-          this.props.onMapLoad(true);
-          let query = staLayer.createQuery();
-          let queryString = `STATION_ID = ${this.props.selectedSta.station_id}`;
-          query.where = queryString;
-          staLayer
-            .queryFeatures(query)
-            .then(result => {
-              if (highlight) {
-                highlight.remove();
-              }
-              highlight = layerView.highlight(result.features);
-            })
-            .catch(err => {
-              console.log(err);
-            });
-
-          setGraphics(this.props.searchResults)
-            .then(graphicsArr => {
-              let resultsLayer = loadDataLayer(graphicsArr);
-              return resultsLayer;
-            })
-            .then(resultsLayer => {
-              this._view.map.add(resultsLayer);
-            })
-            .then(() =>
-              this._view.goTo({ center: this.props.selectedSta.coords })
-            )
-            .catch(err => {
-              console.log(err);
-            });
-
-          //end whenLayerView
-        });
-        //end this.view
-      }
+          //end this.view
+        }
+        //end setTimeout
+      }, 500);
     }
 
     // triggered by map click OR Search
@@ -205,13 +207,6 @@ class EsriMap extends Component {
       mapHeight: window.innerHeight - 60 + 'px',
     });
   };
-
-  componentWillUnmount() {
-    if (this._view) {
-      this._view.container = null;
-      delete this._view;
-    }
-  }
 
   render() {
     const { mapHeight } = this.state;

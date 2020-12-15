@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { createLineSquares } from './utils/helpers.js';
 import Search from './Search';
 import List from './List';
-// import ListItem from './ListItem';
 import './Panel.css';
 //renders HTML string in React
 import parse from 'html-react-parser';
@@ -16,7 +15,6 @@ class Panel extends Component {
       clickedMapSta,
       selectedRestId,
       items,
-      // mapLoaded,
       selectRest,
       removeSelectedRest,
       zoomToSta,
@@ -45,7 +43,6 @@ class Panel extends Component {
             clickMapSta={clickMapSta}
           />
 
-          {/* {mapLoaded && ( */}
           <div className="Results--wrapper">
             <div className="Station--wrapper">
               <div className="panel modifier-class">
@@ -83,7 +80,6 @@ class Panel extends Component {
               />
             )}
           </div>
-          {/* )} */}
         </div>
       </Fragment>
     );

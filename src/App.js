@@ -42,9 +42,6 @@ class App extends Component {
 
   getRestData = async (latitude, longitude) => {
     this.onMapLoad(false);
-    // this.setState({
-    //   data: 'none',
-    // });
 
     const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${latitude}&longitude=${longitude}&radius=804&limit=10`;
     // const url = `https://cors-anywhere.herokuapp.com/http://gafinal.herokuapp.com/?term=restaurant&latitude=${latitude}&longitude=${longitude}&radius=804&limit=10`;
@@ -60,7 +57,6 @@ class App extends Component {
         let searchResults = createFeatureArr(res.data.businesses);
         this.setState({
           searchResults: searchResults,
-          // data: 'searchResults',
         });
       }
     } catch (err) {
@@ -136,9 +132,6 @@ class App extends Component {
             selectedRestId={this.state.selectedRestId}
             selectRest={this.selectRest}
             removeSelectedRest={this.removeSelectedRest}
-            // items={
-            //   this.state.data === 'searchResults' && this.state.searchResults
-            // }
             items={this.state.searchResults}
             mapLoaded={this.state.mapLoaded}
             zoomToSta={this.zoomToSta}

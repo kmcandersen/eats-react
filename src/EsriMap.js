@@ -8,11 +8,9 @@ import {
 } from './utils/layer';
 import { setGraphics } from './utils/graphics';
 import './EsriMap.css';
-//import yellowIcon from './img/map-pin-yellow.svg';
 
 let highlight;
 let mapClickListener;
-//let staLayer;
 
 class EsriMap extends Component {
   constructor(props) {
@@ -40,7 +38,7 @@ class EsriMap extends Component {
       .then(() => {
         this._view.map.add(loadLinesLayer());
       })
-      // adjusts station symbol size at scale breakpoints **effect on performance?
+      // adjusts station symbol size at scale breakpoints
       .then(() => {
         this._view.watch('scale', newValue => {
           let staLayer = this._view.map.layers.find(layer => {
@@ -68,7 +66,7 @@ class EsriMap extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // if (this.props.data === 'searchResults' && prevProps.data === 'none') {
+
     if (this.props.searchResults !== prevProps.searchResults) {
       setTimeout(() => {
         if (this._view) {

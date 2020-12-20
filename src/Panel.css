@@ -57,3 +57,9 @@
   cursor: pointer;
   opacity: 1;
 }
+
+@media only screen and (max-width: 767px) {
+  .Panel--wrapper {
+    width: 100%;
+  }
+}

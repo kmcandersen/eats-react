@@ -203,15 +203,25 @@ class EsriMap extends Component {
   }
 
   calcMapSize = () => {
+    let mapHeight;
+    // phone width
+    if (window.innerWidth < 768) {
+      mapHeight = 380;
+    } else {
+      mapHeight = window.innerHeight - 60
+    }
+
     this.setState({
-      mapHeight: window.innerHeight - 60 + 'px',
+      mapHeight: mapHeight + 'px',
     });
   };
+
+
 
   render() {
     const { mapHeight } = this.state;
     return (
-      <div className="Map--wrapper" style={{ height: mapHeight, width: '65%' }}>
+      <div className="Map--wrapper" style={{ height: mapHeight }}>
         <div className="Map--map" ref={this.mapDiv}>
           <div
             className={`${!this.props.mapLoaded && 'loading-spinner'}`}

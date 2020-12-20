@@ -18,9 +18,17 @@ class List extends Component {
   };
 
   getListHeight = () => {
-    //header + search + station
-    let elsHeight = 60 + 110 + 100;
-    let listHeight = window.innerHeight - elsHeight;
+    // list must have a defined height for scroll
+    let listHeight;
+    // phone width
+    if (window.innerWidth < 768) {
+      listHeight = 380;
+    } else {
+      //header + search + station
+      let elsHeight = 60 + 110 + 100;
+      listHeight = window.innerHeight - elsHeight;
+    }
+
     this.setState({
       listHeight: listHeight,
     });
@@ -32,7 +40,7 @@ class List extends Component {
       for (let i = 0; i < results.length; i++) {
         if (
           results[i].attributes['data-id'].value ===
-            this.props.selectedRestId &&
+          this.props.selectedRestId &&
           //don't scrollIntoView if ListItem clicked (distracting)
           this.props.restSelectedOnMap
         ) {

@@ -55,5 +55,5 @@
 
 .Station--details > .Station--details-zoom:hover {
   cursor: pointer;
-  opacity: 100%;
+  opacity: 1;
 }

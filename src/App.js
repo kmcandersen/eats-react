@@ -24,8 +24,7 @@ class App extends Component {
     //if true, ListItem should scrollIntoView
     restSelectedOnMap: false,
     searchResults: [],
-    bookmarks: [],
-    // becomes searchResults or bookmarks
+    // becomes searchResults
     data: 'none',
     mapLoaded: false,
     //here, t/f has no semantic meaning; it's just a toggle to trigger an update

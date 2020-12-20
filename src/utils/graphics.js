@@ -1,6 +1,5 @@
 import { loadModules } from 'esri-loader';
 
-// arr = search results or bookmarks
 // create an array of graphics based on arr
 export function setGraphics(arr) {
   return loadModules(['esri/Graphic']).then(([Graphic]) => {

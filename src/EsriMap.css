@@ -38,7 +38,7 @@
     border-top: 1px solid #bbbaba;
   }
   .loading-spinner {
-    top: calc(50vh);
-    left: calc(50%);
+    top: 50vh;
+    left: calc(50vw - 2em);
   }
 }

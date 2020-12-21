@@ -33,10 +33,15 @@ class EsriMap extends Component {
         loadHome(this._view);
         loadLocate(this._view);
         let staLayer = loadStationsLayer();
+        let lineLayer = loadLinesLayer();
+        // .addMany doesn't work here
         this._view.map.add(staLayer);
-      })
-      .then(() => {
-        this._view.map.add(loadLinesLayer());
+        this._view.map.add(lineLayer);
+        // mapHeight set at 380 on narrow screens (phone)
+        if (this.state.mapHeight === 380) {
+          const scrollBtn = this.createScrollBtn()
+          this._view.ui.add(scrollBtn, "top-right");
+        }
       })
       // adjusts station symbol size at scale breakpoints
       .then(() => {
@@ -212,20 +217,28 @@ class EsriMap extends Component {
     }
 
     this.setState({
-      mapHeight: mapHeight + 'px',
+      mapHeight: mapHeight
     });
+
   };
 
-
+  createScrollBtn = () => {
+    const scrollBtn = document.createElement('button');
+    scrollBtn.className = 'btn btn-clear Map--scroll-btn';
+    scrollBtn.innerText = 'Back to Top';
+    scrollBtn.addEventListener('click', () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    })
+    return scrollBtn;
+  }
 
   render() {
     const { mapHeight } = this.state;
     return (
-      <div className="Map--wrapper" style={{ height: mapHeight }}>
+      <div className="Map--wrapper" style={{ height: mapHeight + 'px' }}>
         <div className="Map--map" ref={this.mapDiv}>
-          <div
-            className={`${!this.props.mapLoaded && 'loading-spinner'}`}
-          ></div>
+          <div className={`${!this.props.mapLoaded && 'loading-spinner'}`}></div>
         </div>
       </div>
     );

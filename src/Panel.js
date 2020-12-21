@@ -34,7 +34,10 @@ class Panel extends Component {
         ? `${selectedSta.address}, ${selectedSta.city}`
         : `${selectedSta.address}`;
 
+    let isMobile = window.innerWidth < 768;
+
     return (
+
       <Fragment>
         <div className="Panel--wrapper">
           <Search
@@ -63,10 +66,12 @@ class Panel extends Component {
                 </div>
                 <div className="Station--details">
                   <p className="trailer-0 text-light">{displayAddress}</p>
-                  <div
-                    className="Station--details-zoom esri-icon-zoom-in-magnifying-glass text-light"
-                    onClick={zoomToSta}
-                  ></div>
+                  {!isMobile &&
+                    <div
+                      className="Station--details-zoom esri-icon-zoom-in-magnifying-glass text-light"
+                      onClick={zoomToSta}
+                    ></div>
+                  }
                 </div>
               </div>
             </div>

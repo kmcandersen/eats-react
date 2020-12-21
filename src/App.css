@@ -1,8 +1,13 @@
 * {
   box-sizing: border-box;
-  /* border: 1px solid red; */
 }
 .Main--wrapper {
   display: flex;
   flex-direction: row;
+}
+
+@media only screen and (max-width: 767px) {
+  .Main--wrapper {
+    flex-direction: column;
+  }
 }

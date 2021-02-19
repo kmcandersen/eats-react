@@ -42,7 +42,7 @@ class App extends Component {
   getRestData = async (latitude, longitude) => {
     this.onMapLoad(false);
 
-    const url = `http://gafinal.herokuapp.com/?term=restaurant&latitude=${latitude}&longitude=${longitude}&radius=804&limit=10`;
+    const url = `https://gafinal.herokuapp.com/?term=restaurant&latitude=${latitude}&longitude=${longitude}&radius=804&limit=10`;
 
     try {
       let res = await axios.get(url, {

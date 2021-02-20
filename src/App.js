@@ -42,14 +42,10 @@ class App extends Component {
   getRestData = async (latitude, longitude) => {
     this.onMapLoad(false);
 
-    const url = `https://gafinal.herokuapp.com/?term=restaurant&latitude=${latitude}&longitude=${longitude}&radius=804&limit=10`;
-
     try {
-      let res = await axios.get(url, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      let res = await axios.get(
+        `https://eats-react.herokuapp.com/api/v1/yelp-restaurants?term=restaurant&latitude=${latitude}&longitude=${longitude}&radius=804&limit=10`
+      );
       if (res.data.businesses && res.data.businesses[0].categories) {
         let searchResults = createFeatureArr(res.data.businesses);
         this.setState({
